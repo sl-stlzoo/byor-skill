@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build your own technology radar with your AI assistant</title>
+<meta name="description" content="Paste one prompt into your AI assistant and it will interview you, step by step, and build your own technology radar and a single-page website.">
+<meta name="color-scheme" content="light dark">
+<style>
+:root{--bg:#fbfaf7;--ink:#1c1b19;--mute:#5d5a54;--line:#dedad1;--card:#fff;--ac:#0f766e}
+@media(prefers-color-scheme:dark){:root{--bg:#12110f;--ink:#f1eee8;--mute:#a8a39a;--line:#35322d;--card:#1a1815;--ac:#5eead4}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Georgia,serif}
+main{max-width:860px;margin:0 auto;padding:48px 20px 80px}h1,h2,h3,button,.ui,summary,code,pre{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.08;letter-spacing:-.02em;margin:.2em 0}h2{font-size:26px;margin:2em 0 .5em}.eyebrow{font:600 13px system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
+.lede{font-size:20px;color:var(--mute)}.box{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:18px}
+pre{white-space:pre-wrap;word-break:break-word;margin:0 0 12px;font-size:14.5px;line-height:1.55}
+button,.btn{font:600 14px system-ui;border:1px solid var(--ac);background:var(--ac);color:#fff;padding:10px 16px;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.alt,button.alt{background:transparent;color:var(--ink);border-color:var(--line)}.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+ol.steps{padding-left:22px}ol.steps li{margin:.5em 0}a{color:var(--ac)}details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:12px 0;font-weight:600}details p{margin:0 0 14px}
+table{border-collapse:collapse;width:100%;font:15px system-ui}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}.scroll{overflow-x:auto}
+small,.note{color:var(--mute);font-size:14px}:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+</style></head><body><main>
+<div class="eyebrow">Open source · works with any capable AI assistant</div>
+<h1>Build your own technology radar, by conversation</h1>
+<p class="lede">Paste one prompt into your AI assistant. It interviews you, one question at a time, about your software (ERP, CRM, HR, security, cloud, AI tools and more), places each tool on a Thoughtworks-style radar, and hands you a data file for BYOR plus a polished single-page website.</p>
+
+<h2>1. Copy this prompt</h2>
+<div class="box"><pre id="p1"></pre>
+<div class="row"><button id="copy" type="button">Copy prompt</button><a class="btn alt" href="AGENTS.md">Read the agent instructions</a></div>
+<p class="note" id="status" role="status"></p></div>
+<details><summary>My assistant can’t open links</summary><p>Download <a id="bundle" href="BUNDLE.md">BUNDLE.md</a> (every instruction file for building your radar, in one document; <a href="BUNDLE-FULL.md">BUNDLE-FULL.md</a> adds scripts and consortium material), attach it to the chat, and say: “Follow AGENTS.md inside this file and guide me through building my own technology radar, one question at a time.”</p></details>
+<details><summary>Resume later, or use a customised fork</summary><p>Say: “Resume my radar using this repo” and paste your saved <code>radar-state.json</code>. To use your own domain list, fork the repo, edit <code>config/domains.yaml</code>, and give the assistant your fork’s link instead.</p></details>
+
+<h2>2. What to expect</h2>
+<ol class="steps">
+<li><b>Setup (about 10 min).</b> Pick quick, standard or deep; describe your organisation; confirm which of the 25 software areas apply; define what Adopt, Trial, Assess and Caution mean for you.</li>
+<li><b>Interviews (about 5 min per area at standard depth).</b> One area at a time, each quadrant in turn. You list what you use, pilot and avoid; the assistant proposes a ring with a reason and you confirm.</li>
+<li><b>Calibration.</b> You review each ring across the whole radar.</li>
+<li><b>Narrative.</b> You approve a tagline, intro, three or four themes and a short action list.</li>
+<li><b>Check and publish.</b> The assistant validates the data and walks you through hosting.</li>
+</ol>
+<p>You can stop at any time and resume. Typical total: about an hour at quick depth, about two at standard.</p>
+
+<h2>3. What you get</h2>
+<div class="box"><ul>
+<li><b>index.html</b>: a single-page website with an interactive radar, ring guide, themes, every blip’s write-up, actions and FAQ. Works offline, on phones and in print.</li>
+<li><b>radar.csv / radar.json</b>: load into <a href="https://www.thoughtworks.com/radar/byor">Thoughtworks Build Your Own Radar</a>.</li>
+<li><b>radar-summary.md</b> and <b>radar-state.json</b> (your editable master record for next edition).</li></ul>
+<p class="note">Assistants that cannot save files print the CSV and state in the chat instead, and the site can be hand-built as a lighter alternative.</p></div>
+
+<h2>4. Good to know</h2>
+<ul><li><b>Security:</b> read <a href="SECURITY.md">SECURITY.md</a> before using it at work. Short version: no accounts, no telemetry, no secrets; the risk is what you tell an AI assistant and where you publish the result.</li><li><b>Privacy:</b> the site and CSV list your whole tool stack. Host privately unless you want it public; the site is set to <code>noindex</code> by default.</li>
+<li><b>Custom quadrant names</b> show correctly only on a self-hosted BYOR (one Docker command). The hosted Thoughtworks site needs a compatibility export.</li>
+<li><b>It is your opinion, not a survey.</b> Example tool names in the question lists may be out of date; the assistant should verify them if you allow web lookups.</li></ul>
+
+<h2>Benchmark with peer organisations (optional)</h2>
+<p>A convener can run an informal consortium round: members share a small redacted file (tools, rings, evidence; never descriptions or incidents), everything is processed offline, nothing is shown unless at least three organisations contributed, and everyone gets a benchmark website plus a private “you vs the round” report. See <a href="docs/CONSORTIUM.md">docs/CONSORTIUM.md</a>.</p>
+
+<h2>Tested clients</h2>
+<p class="note">Community-maintained. Results and how to add yours: <a href="TESTING.md">TESTING.md</a>.</p>
+<div class="scroll"><table><thead><tr><th>Client</th><th>Expected tier</th><th>Status</th></tr></thead><tbody>
+<tr><td>Claude Code / Cowork</td><td>1: full (files, code, site)</td><td>Not yet tested</td></tr>
+<tr><td>Claude.ai chat (web fetch on)</td><td>2: chat snapshots, CSV</td><td>Not yet tested</td></tr>
+<tr><td>ChatGPT (browsing on)</td><td>2: chat snapshots, CSV</td><td>Not yet tested</td></tr>
+<tr><td>Cursor / Copilot agent</td><td>1: full</td><td>Not yet tested</td></tr>
+<tr><td>Any chat with BUNDLE.md attached</td><td>3: offline bundle</td><td>Not yet tested</td></tr></tbody></table></div>
+
+<p class="note" style="margin-top:40px">Method adapted from the <a href="https://www.thoughtworks.com/radar/faq">Thoughtworks Technology Radar</a>. This project is independent and not affiliated with or endorsed by Thoughtworks. MIT licensed. <a id="repo" href="https://github.com/sl-stlzoo/byor-skill">Repository</a></p>
+</main>
+<script>
+(function(){
+  var h=location.hostname,owner="sl-stlzoo",repo="byor-skill";
+  var m=h.match(/^([^.]+)\.github\.io$/); if(m){owner=m[1]; var seg=location.pathname.split("/")[1]; if(seg) repo=seg;}
+  var gh="https://github.com/"+owner+"/"+repo, raw="https://raw.githubusercontent.com/"+owner+"/"+repo+"/main/AGENTS.md";
+  var prompt="Fetch "+raw+" and follow it exactly to guide me, one question at a time, through building my own Thoughtworks BYOR technology radar and a single-page website. Save progress as you go.";
+  document.getElementById("p1").textContent=prompt; document.getElementById("repo").href=gh;
+  var s=document.getElementById("status");
+  if(owner==="sl-stlzoo") s.textContent="Replace sl-stlzoo with the GitHub account that hosts this repository (this page fills it in automatically when served from GitHub Pages).";
+  document.getElementById("copy").onclick=function(){
+    var done=function(){s.textContent="Copied. Paste it into your assistant."};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(prompt).then(done,function(){s.textContent="Select the text above and copy it."})}
+    else{s.textContent="Select the text above and copy it."}};
+})();
+</script></body></html>

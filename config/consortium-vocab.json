@@ -1,0 +1,20 @@
+{
+  "_comment": "Closed vocabularies for consortium contributions (schema byor-consortium-contribution/1). Changing these changes the schema: bump rubric_version and tell members.",
+  "rubric_version": "1",
+  "sectors": ["nonprofit", "education", "healthcare", "government-public", "retail-hospitality", "financial-services", "professional-services", "manufacturing", "technology", "other"],
+  "size_bands": ["1-49", "50-249", "250-999", "1000-4999", "5000-plus"],
+  "regions": ["north-america", "latin-america", "europe", "middle-east-africa", "asia-pacific", "global"],
+  "rings": ["adopt", "trial", "assess", "caution"],
+  "experience": ["none", "lt-6m", "6-12m", "1-3y", "gt-3y"],
+  "experience_labels": {"none": "No real use yet", "lt-6m": "Under 6 months", "6-12m": "6 to 12 months", "1-3y": "1 to 3 years", "gt-3y": "Over 3 years"},
+  "scale": ["pilot", "team-or-site", "organisation-wide"],
+  "caution_tags": ["cost", "support", "security", "reliability", "fit", "usability", "integration", "lock-in", "vendor-direction", "compliance", "end-of-life", "other"],
+  "calibration": {
+    "adopt_min_experience": ["lt-6m", "6-12m", "1-3y", "gt-3y"],
+    "adopt_requires_owner": "boolean",
+    "adopt_requires_security_review": "boolean",
+    "trial_requires_real_use": "boolean",
+    "caution_meaning": ["bad-experience", "avoid-new-use", "plan-to-retire"]
+  },
+  "limits": {"max_blips": 250, "rationale_chars": 140, "org_name_chars": 80, "kit_notes_chars": 300}
+}

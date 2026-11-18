@@ -1,0 +1,19 @@
+{
+  "name": "Tool name exactly as users know it",
+  "ring": "adopt | trial | assess | hold",
+  "quadrant": "quadrant id",
+  "domain": "domain id",
+  "tool_id": "registry id (filled quietly) or x-<slug>",
+  "ring_reason": "why it moved, a few words (update flow)",
+  "isNew": false,
+  "status": "",
+  "description": "HTML-light text, 30-110 words. See skills/byor-blip-assessor/references/blip-writing.md",
+  "owner": "role or name accountable for this tool",
+  "confidence": "low | medium | high",
+  "evidence": ["user-stated", "public info: https://..."],
+  "last_reviewed": "YYYY-MM-DD",
+  "next_review": "YYYY-MM-DD",
+  "decision_notes": "",
+  "radial": 0.5,
+  "champion": "person who writes and maintains the description"
+}

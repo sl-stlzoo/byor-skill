@@ -1,0 +1,66 @@
+[
+  {
+    "name": "QuickBooks",
+    "ring": "Adopt",
+    "quadrant": "Business Operations & Finance",
+    "isNew": "FALSE",
+    "description": "QuickBooks is our general ledger, payables and receivables for the single legal entity. Adopt: used daily for three years with a named owner and tested monthly backups. Watch-out: fund reporting needs manual spreadsheets. Keep as the ledger of record and review fund accounting options at contract renewal.",
+    "status": ""
+  },
+  {
+    "name": "Odoo POS",
+    "ring": "Trial",
+    "quadrant": "Business Operations & Finance",
+    "isNew": "TRUE",
+    "description": "Odoo POS is being piloted in the museum shop for stock and till sales. Trial: two months in one site with sales reconciled weekly. Watch-out: card terminal integration needs staff training. Expand to the cafe once offline mode is tested.",
+    "status": "New"
+  },
+  {
+    "name": "Neon One",
+    "ring": "Adopt",
+    "quadrant": "Customers & Members",
+    "isNew": "FALSE",
+    "description": "Neon One manages memberships, renewals and donor records. Adopt: it is the single record for members with automatic renewals. Watch-out: reports are limited. Use it as the default for any new member programme.",
+    "status": ""
+  },
+  {
+    "name": "CiviCRM",
+    "ring": "Assess",
+    "quadrant": "Customers & Members",
+    "isNew": "TRUE",
+    "description": "CiviCRM is being explored as an open source alternative to our paid member and donor database. Assess: only a demo instance exists with no live data. Next step: a data-migration proof of concept and a hosting cost estimate.",
+    "status": ""
+  },
+  {
+    "name": "Microsoft 365",
+    "ring": "Adopt",
+    "quadrant": "Service & Workplace",
+    "isNew": "FALSE",
+    "description": "Microsoft 365 provides email, files, chat and meetings for all staff. Adopt: company-wide for four years with MFA enforced. Watch-out: sharing settings are too open. Default for collaboration; review external sharing quarterly.",
+    "status": ""
+  },
+  {
+    "name": "Zendesk",
+    "ring": "Caution",
+    "quadrant": "Service & Workplace",
+    "isNew": "FALSE",
+    "description": "Zendesk is used for IT requests only by two staff. Hold: licence cost is high for the usage and a bundled helpdesk is available in Microsoft 365. Freeze new use and plan migration of the knowledge base before renewal.",
+    "status": "Moved Out"
+  },
+  {
+    "name": "Microsoft Defender for Endpoint",
+    "ring": "Trial",
+    "quadrant": "Security & Infrastructure",
+    "isNew": "TRUE",
+    "description": "Defender for Endpoint is deployed to 20 of 60 laptops. Trial: pilot with weekly alert review by the IT lead. Watch-out: alerts need triage time. Expand to all laptops after the pilot report in Q1.",
+    "status": ""
+  },
+  {
+    "name": "Microsoft Copilot",
+    "ring": "Assess",
+    "quadrant": "Security & Infrastructure",
+    "isNew": "TRUE",
+    "description": "Microsoft Copilot is being evaluated for drafting and meeting summaries. Assess: five volunteers testing with no sensitive data allowed. Next step: agree a data-handling policy and measure time saved before any wider purchase.",
+    "status": ""
+  }
+]

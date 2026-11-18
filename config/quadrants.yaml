@@ -1,0 +1,39 @@
+# Quadrants group the domains in domains.yaml. BYOR draws exactly 4 quadrants.
+# Names avoid commas to keep CSV/ENV handling simple. Add your own scheme under `schemes`.
+schema_version: 1
+schemes:
+
+  business-domains:           # DEFAULT. Designed for the 25 starter software domains.
+    description: "Organises business software by who it serves and what job it does."
+    quadrants:
+      - id: business-ops
+        name: "Business Operations & Finance"
+        blurb: "Back-office and operational systems that run the organisation day to day."
+      - id: customers-members
+        name: "Customers & Members"
+        blurb: "Everything that faces customers, members, donors, volunteers, attendees and the public."
+      - id: service-workplace
+        name: "Service & Workplace"
+        blurb: "How staff communicate, collaborate, get help and deliver service."
+      - id: security-infra
+        name: "Security & Infrastructure"
+        blurb: "Security, cloud, location data and AI capabilities underneath everything else."
+
+  thoughtworks-classic:       # The original BYOR quadrants (work on the hosted radar.thoughtworks.com site).
+    description: "Techniques / Platforms / Tools / Languages & Frameworks. Best for engineering radars."
+    quadrants:
+      - { id: techniques, name: "Techniques", blurb: "Ways of working and practices." }
+      - { id: platforms,  name: "Platforms",  blurb: "Things to build on top of." }
+      - { id: tools,      name: "Tools",      blurb: "Things that support building and running software." }
+      - { id: languages-frameworks, name: "Languages & Frameworks", blurb: "Languages, libraries, frameworks." }
+
+  custom:
+    description: "User-defined. The agent asks for exactly four names and assigns domains to them."
+    quadrants: []
+
+# Default mapping of starter domains -> quadrant ids of the business-domains scheme.
+default_domain_mapping:
+  business-ops:       [erp, accounting, hris, retail, food-and-beverage, parking]
+  customers-members:  [crm, membership, ticketing, e-commerce, marketing-communication, event-management, volunteer-services, wealth-screening]
+  service-workplace:  [itsm-helpdesk, call-center, telephony, business-productivity, intranet, digital-signage]
+  security-infra:     [access-control, endpoint-security, public-cloud, gis, ai-tools]

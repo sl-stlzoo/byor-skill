@@ -1,0 +1,51 @@
+{
+  "generated": "2026-11-15",
+  "min_cohort": 3,
+  "files": [
+    {
+      "file": "greenfield.json",
+      "status": "accepted",
+      "reasons": [],
+      "org": "Greenfield Credit Union",
+      "attribution": "named",
+      "warnings": []
+    },
+    {
+      "file": "harbor.json",
+      "status": "accepted",
+      "reasons": [],
+      "org": "Harbor Health Alliance",
+      "attribution": "anonymous",
+      "warnings": []
+    },
+    {
+      "file": "northwind.json",
+      "status": "accepted",
+      "reasons": [],
+      "org": "Northwind Community College",
+      "attribution": "named",
+      "warnings": [
+        "blips[2]: adopt with no real use is inconsistent; aggregator will treat it as assess",
+        "blips[2]: adopt below the contributor's own stated minimum experience",
+        "blips[6]: adopt with no real use is inconsistent; aggregator will treat it as assess",
+        "blips[6]: adopt below the contributor's own stated minimum experience"
+      ]
+    },
+    {
+      "file": "riverside.json",
+      "status": "accepted",
+      "reasons": [],
+      "org": "Riverside Arts Trust",
+      "attribution": "named",
+      "warnings": []
+    },
+    {
+      "file": "summit.json",
+      "status": "accepted",
+      "reasons": [],
+      "org": "Summit Outdoor Co-op",
+      "attribution": "anonymous",
+      "warnings": []
+    }
+  ]
+}

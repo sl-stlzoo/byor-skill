@@ -1,0 +1,7 @@
+{
+  "_comment": "Single source of truth for this deployment. Managed by scripts/set_owner.py; edit via that script, not by hand.",
+  "owner": "sl-stlzoo",
+  "repo": "byor-skill",
+  "branch": "main",
+  "credit": "byor-radar-skills"
+}

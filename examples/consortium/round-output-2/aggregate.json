@@ -1,0 +1,609 @@
+{
+  "schema": "byor-consortium-aggregate/1",
+  "round": {
+    "id": "2027-r1",
+    "title": "Community Orgs Software Benchmark, Round 2",
+    "convener": "Example Convener Org",
+    "registry_version": "2026.11.0",
+    "rubric_version": "1",
+    "min_cohort": 3,
+    "generated": "2026-11-16",
+    "previous_round_id": "2026-r1",
+    "sequence": 2
+  },
+  "participants": {
+    "count": 5,
+    "named": [
+      "Greenfield Credit Union",
+      "Northwind Community College",
+      "Riverside Arts Trust"
+    ],
+    "anonymous_count": 2,
+    "composition": {
+      "sector": {
+        "education": "<k",
+        "financial-services": "<k",
+        "healthcare": "<k",
+        "nonprofit": "<k",
+        "retail-hospitality": "<k"
+      },
+      "size_band": {
+        "1-49": "<k",
+        "250-999": "<k",
+        "50-249": "<k"
+      },
+      "region": {
+        "europe": "<k",
+        "north-america": 4
+      }
+    }
+  },
+  "calibration": {
+    "adopt_min_experience": {
+      "6-12m": 5
+    },
+    "adopt_requires_owner": {
+      "True": 5
+    },
+    "adopt_requires_security_review": {
+      "True": 5
+    },
+    "trial_requires_real_use": {
+      "True": 5
+    },
+    "caution_meaning": {
+      "bad-experience": 5
+    }
+  },
+  "normalisation": {
+    "adjusted_ratings": 2,
+    "rules": [
+      "Adopt with under 6 months of real use is counted as Trial.",
+      "Trial with no real use is counted as Assess.",
+      "Tools used by fewer than the minimum cohort of organisations are not shown.",
+      "Anonymous ratings are included in a tool's totals only when at least the minimum cohort of anonymous organisations used it; otherwise totals cover named organisations only."
+    ]
+  },
+  "domains": {
+    "accounting": {
+      "orgs_covering": 5,
+      "suppressed": false,
+      "tools": [
+        {
+          "tool_id": "quickbooks",
+          "name": "QuickBooks",
+          "licence": "commercial",
+          "n_orgs": 4,
+          "adoption_share": 0.8,
+          "named_ratings": [
+            {
+              "org": "Greenfield Credit Union",
+              "ring": "adopt",
+              "experience": "gt-3y",
+              "scale": "organisation-wide"
+            },
+            {
+              "org": "Riverside Arts Trust",
+              "ring": "assess",
+              "experience": "gt-3y",
+              "scale": "organisation-wide"
+            }
+          ],
+          "basis": "named-only",
+          "n_basis": 2,
+          "ring_counts": {
+            "adopt": 1,
+            "trial": 0,
+            "assess": 1,
+            "caution": 0
+          },
+          "consensus": "split",
+          "consensus_rings": [
+            "adopt",
+            "assess"
+          ],
+          "agreement": 0.5,
+          "experience_counts": {
+            "none": 0,
+            "lt-6m": 0,
+            "6-12m": 0,
+            "1-3y": 0,
+            "gt-3y": 2
+          },
+          "scale_counts": {
+            "pilot": 0,
+            "team-or-site": 0,
+            "organisation-wide": 2
+          },
+          "caution_tags": {},
+          "flags": []
+        }
+      ],
+      "long_tail_suppressed": 0
+    },
+    "retail": {
+      "orgs_covering": 5,
+      "suppressed": false,
+      "tools": [
+        {
+          "tool_id": "odoo-pos",
+          "name": "Odoo POS",
+          "licence": "oss-core",
+          "n_orgs": 4,
+          "adoption_share": 0.8,
+          "named_ratings": [
+            {
+              "org": "Greenfield Credit Union",
+              "ring": "adopt",
+              "experience": "6-12m",
+              "scale": "team-or-site"
+            },
+            {
+              "org": "Northwind Community College",
+              "ring": "adopt",
+              "experience": "6-12m",
+              "scale": "team-or-site"
+            }
+          ],
+          "basis": "named-only",
+          "n_basis": 2,
+          "ring_counts": {
+            "adopt": 2,
+            "trial": 0,
+            "assess": 0,
+            "caution": 0
+          },
+          "consensus": "adopt",
+          "consensus_rings": [
+            "adopt"
+          ],
+          "agreement": 1.0,
+          "experience_counts": {
+            "none": 0,
+            "lt-6m": 0,
+            "6-12m": 2,
+            "1-3y": 0,
+            "gt-3y": 0
+          },
+          "scale_counts": {
+            "pilot": 0,
+            "team-or-site": 2,
+            "organisation-wide": 0
+          },
+          "caution_tags": {},
+          "flags": []
+        }
+      ],
+      "long_tail_suppressed": 0
+    },
+    "membership": {
+      "orgs_covering": 5,
+      "suppressed": false,
+      "tools": [
+        {
+          "tool_id": "neon-one",
+          "name": "Neon One",
+          "licence": "commercial",
+          "n_orgs": 5,
+          "adoption_share": 1.0,
+          "named_ratings": [
+            {
+              "org": "Greenfield Credit Union",
+              "ring": "adopt",
+              "experience": "1-3y",
+              "scale": "organisation-wide"
+            },
+            {
+              "org": "Northwind Community College",
+              "ring": "adopt",
+              "experience": "1-3y",
+              "scale": "organisation-wide"
+            },
+            {
+              "org": "Riverside Arts Trust",
+              "ring": "assess",
+              "experience": "1-3y",
+              "scale": "organisation-wide"
+            }
+          ],
+          "basis": "named-only",
+          "n_basis": 3,
+          "ring_counts": {
+            "adopt": 2,
+            "trial": 0,
+            "assess": 1,
+            "caution": 0
+          },
+          "consensus": "adopt",
+          "consensus_rings": [
+            "adopt"
+          ],
+          "agreement": 0.67,
+          "experience_counts": {
+            "none": 0,
+            "lt-6m": 0,
+            "6-12m": 0,
+            "1-3y": 3,
+            "gt-3y": 0
+          },
+          "scale_counts": {
+            "pilot": 0,
+            "team-or-site": 0,
+            "organisation-wide": 3
+          },
+          "caution_tags": {},
+          "flags": []
+        }
+      ],
+      "long_tail_suppressed": 0
+    },
+    "crm": {
+      "orgs_covering": 5,
+      "suppressed": false,
+      "tools": [
+        {
+          "tool_id": "zoho-crm",
+          "name": "Zoho CRM",
+          "licence": "commercial",
+          "n_orgs": 5,
+          "adoption_share": 1.0,
+          "named_ratings": [
+            {
+              "org": "Greenfield Credit Union",
+              "ring": "trial",
+              "experience": "6-12m",
+              "scale": "pilot"
+            },
+            {
+              "org": "Northwind Community College",
+              "ring": "adopt",
+              "experience": "1-3y",
+              "scale": "team-or-site"
+            },
+            {
+              "org": "Riverside Arts Trust",
+              "ring": "trial",
+              "experience": "6-12m",
+              "scale": "pilot"
+            }
+          ],
+          "basis": "named-only",
+          "n_basis": 3,
+          "ring_counts": {
+            "adopt": 1,
+            "trial": 2,
+            "assess": 0,
+            "caution": 0
+          },
+          "consensus": "trial",
+          "consensus_rings": [
+            "trial"
+          ],
+          "agreement": 0.67,
+          "experience_counts": {
+            "none": 0,
+            "lt-6m": 0,
+            "6-12m": 2,
+            "1-3y": 1,
+            "gt-3y": 0
+          },
+          "scale_counts": {
+            "pilot": 2,
+            "team-or-site": 1,
+            "organisation-wide": 0
+          },
+          "caution_tags": {},
+          "flags": []
+        },
+        {
+          "tool_id": "civicrm",
+          "name": "CiviCRM",
+          "licence": "foss",
+          "n_orgs": 3,
+          "adoption_share": 0.6,
+          "named_ratings": [
+            {
+              "org": "Northwind Community College",
+              "ring": "assess",
+              "experience": "none",
+              "scale": "pilot"
+            }
+          ],
+          "basis": "named-only",
+          "n_basis": 1,
+          "ring_counts": {
+            "adopt": 0,
+            "trial": 0,
+            "assess": 1,
+            "caution": 0
+          },
+          "consensus": "assess",
+          "consensus_rings": [
+            "assess"
+          ],
+          "agreement": 1.0,
+          "experience_counts": {
+            "none": 1,
+            "lt-6m": 0,
+            "6-12m": 0,
+            "1-3y": 0,
+            "gt-3y": 0
+          },
+          "scale_counts": {
+            "pilot": 1,
+            "team-or-site": 0,
+            "organisation-wide": 0
+          },
+          "caution_tags": {},
+          "flags": []
+        }
+      ],
+      "long_tail_suppressed": 0
+    },
+    "itsm-helpdesk": {
+      "orgs_covering": 5,
+      "suppressed": false,
+      "tools": [
+        {
+          "tool_id": "zendesk",
+          "name": "Zendesk",
+          "licence": "commercial",
+          "n_orgs": 5,
+          "adoption_share": 1.0,
+          "named_ratings": [
+            {
+              "org": "Greenfield Credit Union",
+              "ring": "caution",
+              "experience": "1-3y",
+              "scale": "team-or-site"
+            },
+            {
+              "org": "Northwind Community College",
+              "ring": "caution",
+              "experience": "1-3y",
+              "scale": "team-or-site"
+            },
+            {
+              "org": "Riverside Arts Trust",
+              "ring": "caution",
+              "experience": "1-3y",
+              "scale": "team-or-site"
+            }
+          ],
+          "basis": "named-only",
+          "n_basis": 3,
+          "ring_counts": {
+            "adopt": 0,
+            "trial": 0,
+            "assess": 0,
+            "caution": 3
+          },
+          "consensus": "caution",
+          "consensus_rings": [
+            "caution"
+          ],
+          "agreement": 1.0,
+          "experience_counts": {
+            "none": 0,
+            "lt-6m": 0,
+            "6-12m": 0,
+            "1-3y": 3,
+            "gt-3y": 0
+          },
+          "scale_counts": {
+            "pilot": 0,
+            "team-or-site": 3,
+            "organisation-wide": 0
+          },
+          "caution_tags": {
+            "cost": 3,
+            "fit": 3
+          },
+          "flags": [
+            "caution-watch"
+          ]
+        }
+      ],
+      "long_tail_suppressed": 0
+    },
+    "business-productivity": {
+      "orgs_covering": 5,
+      "suppressed": false,
+      "tools": [
+        {
+          "tool_id": "microsoft-365",
+          "name": "Microsoft 365",
+          "licence": "commercial",
+          "n_orgs": 5,
+          "adoption_share": 1.0,
+          "named_ratings": [
+            {
+              "org": "Greenfield Credit Union",
+              "ring": "adopt",
+              "experience": "gt-3y",
+              "scale": "organisation-wide"
+            },
+            {
+              "org": "Northwind Community College",
+              "ring": "adopt",
+              "experience": "gt-3y",
+              "scale": "organisation-wide"
+            },
+            {
+              "org": "Riverside Arts Trust",
+              "ring": "adopt",
+              "experience": "gt-3y",
+              "scale": "organisation-wide"
+            }
+          ],
+          "basis": "named-only",
+          "n_basis": 3,
+          "ring_counts": {
+            "adopt": 3,
+            "trial": 0,
+            "assess": 0,
+            "caution": 0
+          },
+          "consensus": "adopt",
+          "consensus_rings": [
+            "adopt"
+          ],
+          "agreement": 1.0,
+          "experience_counts": {
+            "none": 0,
+            "lt-6m": 0,
+            "6-12m": 0,
+            "1-3y": 0,
+            "gt-3y": 3
+          },
+          "scale_counts": {
+            "pilot": 0,
+            "team-or-site": 0,
+            "organisation-wide": 3
+          },
+          "caution_tags": {},
+          "flags": []
+        }
+      ],
+      "long_tail_suppressed": 0
+    },
+    "endpoint-security": {
+      "orgs_covering": 5,
+      "suppressed": false,
+      "tools": [
+        {
+          "tool_id": "microsoft-defender-for-endpoint",
+          "name": "Microsoft Defender for Endpoint",
+          "licence": "commercial",
+          "n_orgs": 4,
+          "adoption_share": 0.8,
+          "named_ratings": [
+            {
+              "org": "Greenfield Credit Union",
+              "ring": "trial",
+              "experience": "6-12m",
+              "scale": "pilot"
+            },
+            {
+              "org": "Northwind Community College",
+              "ring": "assess",
+              "experience": "6-12m",
+              "scale": "pilot"
+            },
+            {
+              "org": "Riverside Arts Trust",
+              "ring": "assess",
+              "experience": "6-12m",
+              "scale": "pilot"
+            }
+          ],
+          "basis": "named-only",
+          "n_basis": 3,
+          "ring_counts": {
+            "adopt": 0,
+            "trial": 1,
+            "assess": 2,
+            "caution": 0
+          },
+          "consensus": "assess",
+          "consensus_rings": [
+            "assess"
+          ],
+          "agreement": 0.67,
+          "experience_counts": {
+            "none": 0,
+            "lt-6m": 0,
+            "6-12m": 3,
+            "1-3y": 0,
+            "gt-3y": 0
+          },
+          "scale_counts": {
+            "pilot": 3,
+            "team-or-site": 0,
+            "organisation-wide": 0
+          },
+          "caution_tags": {},
+          "flags": []
+        }
+      ],
+      "long_tail_suppressed": 0
+    },
+    "ai-tools": {
+      "orgs_covering": 5,
+      "suppressed": false,
+      "tools": [
+        {
+          "tool_id": "microsoft-copilot",
+          "name": "Microsoft Copilot",
+          "licence": "commercial",
+          "n_orgs": 4,
+          "adoption_share": 0.8,
+          "named_ratings": [
+            {
+              "org": "Greenfield Credit Union",
+              "ring": "trial",
+              "experience": "lt-6m",
+              "scale": "pilot"
+            },
+            {
+              "org": "Northwind Community College",
+              "ring": "assess",
+              "experience": "none",
+              "scale": "pilot"
+            }
+          ],
+          "basis": "named-only",
+          "n_basis": 2,
+          "ring_counts": {
+            "adopt": 0,
+            "trial": 1,
+            "assess": 1,
+            "caution": 0
+          },
+          "consensus": "split",
+          "consensus_rings": [
+            "trial",
+            "assess"
+          ],
+          "agreement": 0.5,
+          "experience_counts": {
+            "none": 1,
+            "lt-6m": 1,
+            "6-12m": 0,
+            "1-3y": 0,
+            "gt-3y": 0
+          },
+          "scale_counts": {
+            "pilot": 2,
+            "team-or-site": 0,
+            "organisation-wide": 0
+          },
+          "caution_tags": {},
+          "flags": []
+        }
+      ],
+      "long_tail_suppressed": 0
+    },
+    "erp": {
+      "orgs_covering": "<k",
+      "suppressed": true,
+      "tools": [],
+      "long_tail_suppressed": 0
+    },
+    "hris": {
+      "orgs_covering": "<k",
+      "suppressed": true,
+      "tools": [],
+      "long_tail_suppressed": 0
+    }
+  },
+  "slices": {
+    "sector": {},
+    "region": {
+      "north-america": {
+        "orgs": 4,
+        "tools": []
+      }
+    }
+  }
+}

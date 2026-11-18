@@ -1,0 +1,58 @@
+{
+  "schema": "byor-consortium-trends/1",
+  "old_round": {
+    "id": "2026-r1",
+    "title": "Community Orgs Software Benchmark, Round 1",
+    "organisations": 5
+  },
+  "new_round": {
+    "id": "2027-r1",
+    "title": "Community Orgs Software Benchmark, Round 2",
+    "organisations": 5
+  },
+  "min_cohort": 3,
+  "comparability": {
+    "declared_follow_up": true,
+    "same_rating_rules": true,
+    "same_tool_list": true,
+    "named_in_both_rounds": 3,
+    "domains_in_both": 10,
+    "domains_only_before": [],
+    "domains_only_now": [],
+    "confounded": false,
+    "warnings": []
+  },
+  "rising": [],
+  "falling": [],
+  "consensus_moved": [
+    {
+      "tool_id": "microsoft-copilot",
+      "name": "Microsoft Copilot",
+      "domain": "ai-tools",
+      "before": "assess",
+      "now": "split",
+      "orgs_before": 4,
+      "orgs_now": 4
+    },
+    {
+      "tool_id": "odoo-pos",
+      "name": "Odoo POS",
+      "domain": "retail",
+      "before": "split",
+      "now": "adopt",
+      "orgs_before": 4,
+      "orgs_now": 4
+    }
+  ],
+  "appeared": [
+    {
+      "tool_id": "zoho-crm",
+      "name": "Zoho CRM",
+      "domain": "crm",
+      "orgs_now": 5
+    }
+  ],
+  "no_longer_shown": [],
+  "calibration_shift": {},
+  "panel": null
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "byor-consortium-round-kit/1",
+  "round_id": "2026-r1",
+  "title": "Community Orgs Software Benchmark, Round 1",
+  "convener": "Example Convener Org",
+  "registry_version": "2026.11.0",
+  "rubric_version": "1",
+  "domains": ["erp", "accounting", "hris", "crm", "membership", "ticketing", "e-commerce", "itsm-helpdesk", "business-productivity", "endpoint-security", "public-cloud", "ai-tools"],
+  "min_cohort": 3,
+  "deadline": "2027-01-31",
+  "default_attribution": "named",
+  "allow_custom_tools": true,
+  "notes": "Informal benchmark. Experience and scale buckets only; no pricing, people or incident details."
+}

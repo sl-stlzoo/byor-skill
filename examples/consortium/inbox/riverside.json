@@ -1,0 +1,90 @@
+{
+  "schema": "byor-consortium-contribution/1",
+  "round": {
+    "id": "2026-r1",
+    "registry_version": "2026.11.0",
+    "rubric_version": "1",
+    "kit_sha256": "f355a642bd7c2ed99289691c576c507f8370f7f3360a30ce9c18b1dcd8e5a8aa"
+  },
+  "contributor": {
+    "org_name": "Riverside Arts Trust",
+    "attribution": "named",
+    "profile": {
+      "sector": "nonprofit",
+      "size_band": "50-249",
+      "region": "north-america"
+    }
+  },
+  "calibration": {
+    "adopt_min_experience": "6-12m",
+    "adopt_requires_owner": true,
+    "adopt_requires_security_review": true,
+    "trial_requires_real_use": true,
+    "caution_meaning": "bad-experience"
+  },
+  "domains_covered": [
+    "accounting",
+    "ai-tools",
+    "business-productivity",
+    "crm",
+    "endpoint-security",
+    "itsm-helpdesk",
+    "membership",
+    "retail"
+  ],
+  "domains_skipped": [
+    "erp",
+    "hris"
+  ],
+  "blips": [
+    {
+      "tool_id": "quickbooks",
+      "domain": "accounting",
+      "ring": "assess",
+      "experience": "gt-3y",
+      "scale": "organisation-wide"
+    },
+    {
+      "tool_id": "neon-one",
+      "domain": "membership",
+      "ring": "assess",
+      "experience": "1-3y",
+      "scale": "organisation-wide"
+    },
+    {
+      "tool_id": "zendesk",
+      "domain": "itsm-helpdesk",
+      "ring": "caution",
+      "experience": "1-3y",
+      "scale": "team-or-site",
+      "caution_tags": [
+        "cost",
+        "fit"
+      ]
+    },
+    {
+      "tool_id": "microsoft-365",
+      "domain": "business-productivity",
+      "ring": "adopt",
+      "experience": "gt-3y",
+      "scale": "organisation-wide"
+    },
+    {
+      "tool_id": "microsoft-defender-for-endpoint",
+      "domain": "endpoint-security",
+      "ring": "assess",
+      "experience": "lt-6m",
+      "scale": "pilot"
+    }
+  ],
+  "consent": {
+    "acknowledged_withdrawal": true,
+    "acknowledged_attribution": true,
+    "acknowledged_convener_sees_name": true,
+    "reviewed_preview": true
+  },
+  "generated": "2026-11-10",
+  "integrity": {
+    "sha256": "6c24beeb428f2731267b51f1f8f15d879ba880b2cad1e7958b7b870c84724e64"
+  }
+}

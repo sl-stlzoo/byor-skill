@@ -1,0 +1,40 @@
+# Rings = the recommendation level of each blip. BYOR supports up to 4 rings.
+# Wording follows the canonical Thoughtworks Technology Radar FAQ (https://www.thoughtworks.com/radar/faq), paraphrased.
+# criteria_default is a STARTING POINT; Phase 4 tailors each ring to the user's organisation.
+# Position inside the ring matters (closer to the centre = more confidence); angle inside a quadrant does not.
+schema_version: 1
+rings:
+  - id: adopt
+    name: Adopt
+    meaning: "Proven and mature here. Not using it, in the right context, would be a poor and slightly irresponsible choice. It is not 'use on every project'."
+    criteria_default:
+      - "In production use for 6+ months in our organisation (or a very close peer)."
+      - "Named business owner and named administrator."
+      - "Security, privacy and data-protection review done; backup and exit plan known."
+      - "We would tell any new team in this area to use it, where it fits."
+    typical_actions: ["Use by default", "Standardise", "Train staff", "Renew"]
+  - id: trial
+    name: Trial
+    meaning: "Ready for use, not yet fully proven. We have real experience with real work, even if limited. Worth trying to decide if it earns a place in the toolkit."
+    criteria_default:
+      - "Used in production or on real work, in one team, site or process (a demo or sandbox alone is Assess, not Trial)."
+      - "We know what success looks like and are measuring it."
+      - "Risks are documented and none is a known blocker."
+    typical_actions: ["Expand carefully", "Define exit criteria", "Collect feedback"]
+  - id: assess
+    name: Assess
+    meaning: "Interesting and worth a close look, and keeping an eye on. Not trialled yet unless it fits unusually well."
+    criteria_default:
+      - "Spotted through a demo, peer recommendation, analyst note or a staff request."
+      - "No production data or critical dependency yet."
+      - "A next learning step is identified (demo, proof of concept, reference call)."
+    typical_actions: ["Demo", "Proof of concept", "Reference calls", "Budget check"]
+  - id: hold
+    name: Caution
+    display_alias: Hold            # older BYOR name; the data value "hold" is still accepted
+    meaning: "We have had a negative experience, or see real risk. Consider alternatives or proactively avoid. Sometimes it is flawed, sometimes just misused."
+    criteria_default:
+      - "Negative experience that affected our work, repeated incidents, or unacceptable risk or cost."
+      - "End-of-life, end-of-support, or adverse vendor change."
+      - "Where already in use: reflect on why, and plan to move away or contain it."
+    typical_actions: ["Avoid new use", "Plan migration", "Educate colleagues", "Set sunset date"]

@@ -1,0 +1,2046 @@
+{
+ "registry_version": "2026.11.0",
+ "_comment": "Canonical tool registry for consortium rounds. Maintained by the convener (python scripts/registry.py add/check). IDs are stable; never reuse or rename an id. Unlisted tools may be contributed as x-<slug> when the round kit allows custom tools.",
+ "tools": [
+  {
+   "id": "3cx",
+   "name": "3CX",
+   "aliases": [],
+   "domains": [
+    "telephony"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "7shifts",
+   "name": "7shifts",
+   "aliases": [],
+   "domains": [
+    "food-and-beverage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "acumatica",
+   "name": "Acumatica",
+   "aliases": [],
+   "domains": [
+    "erp"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "adp-workforce-now",
+   "name": "ADP Workforce Now",
+   "aliases": [],
+   "domains": [
+    "hris"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "agilysys",
+   "name": "Agilysys",
+   "aliases": [],
+   "domains": [
+    "food-and-beverage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "akaunting",
+   "name": "Akaunting",
+   "aliases": [],
+   "domains": [
+    "accounting"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "amano-mcgann",
+   "name": "Amano McGann",
+   "aliases": [],
+   "domains": [
+    "parking"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "amazon-connect",
+   "name": "Amazon Connect",
+   "aliases": [],
+   "domains": [
+    "call-center"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "amazon-web-services",
+   "name": "Amazon Web Services",
+   "aliases": [
+    "AWS"
+   ],
+   "domains": [
+    "public-cloud"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "appspace",
+   "name": "Appspace",
+   "aliases": [],
+   "domains": [
+    "digital-signage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "arcgis",
+   "name": "ArcGIS",
+   "aliases": [
+    "ArcGIS Online",
+    "Esri",
+    "Esri ArcGIS"
+   ],
+   "domains": [
+    "gis"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "asana",
+   "name": "Asana",
+   "aliases": [],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "asterisk",
+   "name": "Asterisk",
+   "aliases": [],
+   "domains": [
+    "telephony"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "authentik",
+   "name": "Authentik",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "bamboohr",
+   "name": "BambooHR",
+   "aliases": [],
+   "domains": [
+    "hris"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "better-impact",
+   "name": "Better Impact",
+   "aliases": [],
+   "domains": [
+    "volunteer-services"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "bigcommerce",
+   "name": "BigCommerce",
+   "aliases": [],
+   "domains": [
+    "e-commerce"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "bitdefender-gravityzone",
+   "name": "Bitdefender GravityZone",
+   "aliases": [],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "bizzabo",
+   "name": "Bizzabo",
+   "aliases": [],
+   "domains": [
+    "event-management"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "blackbaud-financial-edge-nxt",
+   "name": "Blackbaud Financial Edge NXT",
+   "aliases": [],
+   "domains": [
+    "accounting"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "bookstack",
+   "name": "BookStack",
+   "aliases": [],
+   "domains": [
+    "intranet"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "brevo",
+   "name": "Brevo",
+   "aliases": [],
+   "domains": [
+    "marketing-communication"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "brivo",
+   "name": "Brivo",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "candid-foundation-directory",
+   "name": "Candid Foundation Directory",
+   "aliases": [],
+   "domains": [
+    "wealth-screening"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "canva",
+   "name": "Canva",
+   "aliases": [],
+   "domains": [
+    "marketing-communication"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "carto",
+   "name": "CARTO",
+   "aliases": [],
+   "domains": [
+    "gis"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "chatgpt-enterprise",
+   "name": "ChatGPT Enterprise",
+   "aliases": [
+    "ChatGPT",
+    "OpenAI ChatGPT"
+   ],
+   "domains": [
+    "ai-tools"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "cisco-webex-calling",
+   "name": "Cisco Webex Calling",
+   "aliases": [
+    "Webex Calling"
+   ],
+   "domains": [
+    "telephony"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "cisco-webex-contact-center",
+   "name": "Cisco Webex Contact Center",
+   "aliases": [],
+   "domains": [
+    "call-center"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "civicrm",
+   "name": "CiviCRM",
+   "aliases": [],
+   "domains": [
+    "membership",
+    "crm",
+    "volunteer-services"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "civivolunteer",
+   "name": "CiviVolunteer",
+   "aliases": [],
+   "domains": [
+    "volunteer-services"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "claude",
+   "name": "Claude",
+   "aliases": [
+    "Anthropic Claude",
+    "Claude AI"
+   ],
+   "domains": [
+    "ai-tools"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "cloudflare",
+   "name": "Cloudflare",
+   "aliases": [],
+   "domains": [
+    "public-cloud"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "clover",
+   "name": "Clover",
+   "aliases": [],
+   "domains": [
+    "retail"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "concerto",
+   "name": "Concerto",
+   "aliases": [],
+   "domains": [
+    "digital-signage"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "confluence",
+   "name": "Confluence",
+   "aliases": [],
+   "domains": [
+    "business-productivity",
+    "intranet"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "constant-contact",
+   "name": "Constant Contact",
+   "aliases": [],
+   "domains": [
+    "marketing-communication"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "crowdstrike-falcon",
+   "name": "CrowdStrike Falcon",
+   "aliases": [
+    "CrowdStrike"
+   ],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "cvent",
+   "name": "Cvent",
+   "aliases": [],
+   "domains": [
+    "event-management"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "dialpad",
+   "name": "Dialpad",
+   "aliases": [],
+   "domains": [
+    "telephony"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "digitalocean",
+   "name": "DigitalOcean",
+   "aliases": [],
+   "domains": [
+    "public-cloud"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "dolibarr",
+   "name": "Dolibarr",
+   "aliases": [],
+   "domains": [
+    "erp"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "donorsearch",
+   "name": "DonorSearch",
+   "aliases": [],
+   "domains": [
+    "wealth-screening"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "erpnext",
+   "name": "ERPNext",
+   "aliases": [],
+   "domains": [
+    "erp"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "eset",
+   "name": "ESET",
+   "aliases": [],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "espocrm",
+   "name": "EspoCRM",
+   "aliases": [],
+   "domains": [
+    "crm"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "eventbrite",
+   "name": "Eventbrite",
+   "aliases": [],
+   "domains": [
+    "ticketing",
+    "event-management"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "felt",
+   "name": "Felt",
+   "aliases": [],
+   "domains": [
+    "gis"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "five9",
+   "name": "Five9",
+   "aliases": [],
+   "domains": [
+    "call-center"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "flowbird",
+   "name": "Flowbird",
+   "aliases": [],
+   "domains": [
+    "parking"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "fonteva",
+   "name": "Fonteva",
+   "aliases": [],
+   "domains": [
+    "membership"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "frappe-hr",
+   "name": "Frappe HR",
+   "aliases": [],
+   "domains": [
+    "hris"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "freepbx",
+   "name": "FreePBX",
+   "aliases": [],
+   "domains": [
+    "telephony"
+   ],
+   "licence": "oss-core"
+  },
+  {
+   "id": "freeswitch",
+   "name": "FreeSWITCH",
+   "aliases": [],
+   "domains": [
+    "telephony"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "freshservice",
+   "name": "Freshservice",
+   "aliases": [],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "galaxy-digital",
+   "name": "Galaxy Digital",
+   "aliases": [],
+   "domains": [
+    "volunteer-services"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "genesys-cloud-cx",
+   "name": "Genesys Cloud CX",
+   "aliases": [
+    "Genesys",
+    "Genesys Cloud"
+   ],
+   "domains": [
+    "call-center"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "genetec",
+   "name": "Genetec",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "genetec-autovu",
+   "name": "Genetec AutoVu",
+   "aliases": [],
+   "domains": [
+    "parking"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "geoserver",
+   "name": "GeoServer",
+   "aliases": [],
+   "domains": [
+    "gis"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "github-copilot",
+   "name": "GitHub Copilot",
+   "aliases": [],
+   "domains": [
+    "ai-tools"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "glpi",
+   "name": "GLPI",
+   "aliases": [],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "glue-up",
+   "name": "Glue Up",
+   "aliases": [],
+   "domains": [
+    "membership"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "gnucash",
+   "name": "GnuCash",
+   "aliases": [],
+   "domains": [
+    "accounting"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "google-cloud",
+   "name": "Google Cloud",
+   "aliases": [
+    "GCP",
+    "Google Cloud Platform"
+   ],
+   "domains": [
+    "public-cloud"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "google-gemini",
+   "name": "Google Gemini",
+   "aliases": [
+    "Gemini"
+   ],
+   "domains": [
+    "ai-tools"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "google-maps-platform",
+   "name": "Google Maps Platform",
+   "aliases": [],
+   "domains": [
+    "gis"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "google-workspace",
+   "name": "Google Workspace",
+   "aliases": [
+    "G Suite",
+    "GSuite",
+    "Google Apps"
+   ],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "gusto",
+   "name": "Gusto",
+   "aliases": [],
+   "domains": [
+    "hris"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "haloitsm",
+   "name": "HaloITSM",
+   "aliases": [],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "hetzner",
+   "name": "Hetzner",
+   "aliases": [],
+   "domains": [
+    "public-cloud"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "hid",
+   "name": "HID",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "hubspot",
+   "name": "HubSpot",
+   "aliases": [],
+   "domains": [
+    "crm"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "hubspot-marketing-hub",
+   "name": "HubSpot Marketing Hub",
+   "aliases": [],
+   "domains": [
+    "marketing-communication"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "infor",
+   "name": "Infor",
+   "aliases": [],
+   "domains": [
+    "erp"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "iwave",
+   "name": "iWave",
+   "aliases": [
+    "Kindsight"
+   ],
+   "domains": [
+    "wealth-screening"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "jamf",
+   "name": "Jamf",
+   "aliases": [],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "jira-service-management",
+   "name": "Jira Service Management",
+   "aliases": [
+    "JSM",
+    "Jira Service Desk"
+   ],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "keycloak",
+   "name": "Keycloak",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "kisi",
+   "name": "Kisi",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "klaviyo",
+   "name": "Klaviyo",
+   "aliases": [],
+   "domains": [
+    "marketing-communication"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "kubernetes",
+   "name": "Kubernetes",
+   "aliases": [],
+   "domains": [
+    "public-cloud"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "lenels2",
+   "name": "LenelS2",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "lg-webos-signage",
+   "name": "LG webOS Signage",
+   "aliases": [],
+   "domains": [
+    "digital-signage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "librechat",
+   "name": "LibreChat",
+   "aliases": [],
+   "domains": [
+    "ai-tools"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "libreoffice",
+   "name": "LibreOffice",
+   "aliases": [],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "liferay",
+   "name": "Liferay",
+   "aliases": [],
+   "domains": [
+    "intranet"
+   ],
+   "licence": "oss-core"
+  },
+  {
+   "id": "lightspeed",
+   "name": "Lightspeed",
+   "aliases": [],
+   "domains": [
+    "retail"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "lightspeed-restaurant",
+   "name": "Lightspeed Restaurant",
+   "aliases": [],
+   "domains": [
+    "food-and-beverage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "listmonk",
+   "name": "Listmonk",
+   "aliases": [],
+   "domains": [
+    "marketing-communication"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "magento-open-source",
+   "name": "Magento Open Source",
+   "aliases": [],
+   "domains": [
+    "e-commerce"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "mailchimp",
+   "name": "Mailchimp",
+   "aliases": [
+    "MailChimp"
+   ],
+   "domains": [
+    "marketing-communication"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "manageengine-servicedesk-plus",
+   "name": "ManageEngine ServiceDesk Plus",
+   "aliases": [],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "mapbox",
+   "name": "Mapbox",
+   "aliases": [],
+   "domains": [
+    "gis"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "maplibre",
+   "name": "MapLibre",
+   "aliases": [],
+   "domains": [
+    "gis"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "marketman",
+   "name": "MarketMan",
+   "aliases": [],
+   "domains": [
+    "food-and-beverage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "mautic",
+   "name": "Mautic",
+   "aliases": [],
+   "domains": [
+    "marketing-communication"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "medusa",
+   "name": "Medusa",
+   "aliases": [],
+   "domains": [
+    "e-commerce"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "memberclicks",
+   "name": "MemberClicks",
+   "aliases": [],
+   "domains": [
+    "membership"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "metropolis",
+   "name": "Metropolis",
+   "aliases": [],
+   "domains": [
+    "parking"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-365",
+   "name": "Microsoft 365",
+   "aliases": [
+    "M365",
+    "Microsoft Office 365",
+    "O365",
+    "Office 365",
+    "Office365"
+   ],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-azure",
+   "name": "Microsoft Azure",
+   "aliases": [
+    "Azure"
+   ],
+   "domains": [
+    "public-cloud"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-copilot",
+   "name": "Microsoft Copilot",
+   "aliases": [
+    "Copilot",
+    "M365 Copilot",
+    "Microsoft 365 Copilot"
+   ],
+   "domains": [
+    "ai-tools"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-defender-for-endpoint",
+   "name": "Microsoft Defender for Endpoint",
+   "aliases": [
+    "Defender for Endpoint",
+    "MDE",
+    "Microsoft Defender ATP"
+   ],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-dynamics-365-business-central",
+   "name": "Microsoft Dynamics 365 Business Central",
+   "aliases": [
+    "Business Central",
+    "D365 Business Central"
+   ],
+   "domains": [
+    "erp"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-dynamics-365-finance",
+   "name": "Microsoft Dynamics 365 Finance",
+   "aliases": [
+    "D365 Finance",
+    "Dynamics 365 Finance"
+   ],
+   "domains": [
+    "accounting"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-dynamics-365-sales",
+   "name": "Microsoft Dynamics 365 Sales",
+   "aliases": [
+    "D365 Sales",
+    "Dynamics 365 Sales",
+    "Dynamics CRM"
+   ],
+   "domains": [
+    "crm"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-entra-id",
+   "name": "Microsoft Entra ID",
+   "aliases": [
+    "Azure AD",
+    "Azure Active Directory",
+    "Entra"
+   ],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-intune",
+   "name": "Microsoft Intune",
+   "aliases": [
+    "Intune",
+    "MS Intune"
+   ],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-sharepoint",
+   "name": "Microsoft SharePoint",
+   "aliases": [
+    "SharePoint",
+    "SharePoint Online"
+   ],
+   "domains": [
+    "intranet"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-teams",
+   "name": "Microsoft Teams",
+   "aliases": [
+    "MS Teams"
+   ],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "microsoft-teams-phone",
+   "name": "Microsoft Teams Phone",
+   "aliases": [],
+   "domains": [
+    "telephony"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "ncr-voyix",
+   "name": "NCR Voyix",
+   "aliases": [],
+   "domains": [
+    "retail"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "neon-one",
+   "name": "Neon One",
+   "aliases": [],
+   "domains": [
+    "membership"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "nextcloud",
+   "name": "Nextcloud",
+   "aliases": [],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "oss-core"
+  },
+  {
+   "id": "nice-cxone",
+   "name": "NICE CXone",
+   "aliases": [
+    "CXone",
+    "NICE inContact"
+   ],
+   "domains": [
+    "call-center"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "nimble-ams",
+   "name": "Nimble AMS",
+   "aliases": [],
+   "domains": [
+    "membership"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "notebooklm",
+   "name": "NotebookLM",
+   "aliases": [],
+   "domains": [
+    "ai-tools"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "notion",
+   "name": "Notion",
+   "aliases": [],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "odoo",
+   "name": "Odoo",
+   "aliases": [
+    "Odoo ERP"
+   ],
+   "domains": [
+    "erp"
+   ],
+   "licence": "oss-core"
+  },
+  {
+   "id": "odoo-pos",
+   "name": "Odoo POS",
+   "aliases": [],
+   "domains": [
+    "retail",
+    "food-and-beverage"
+   ],
+   "licence": "oss-core"
+  },
+  {
+   "id": "okta",
+   "name": "Okta",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "ollama",
+   "name": "Ollama",
+   "aliases": [],
+   "domains": [
+    "ai-tools"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "olo",
+   "name": "Olo",
+   "aliases": [],
+   "domains": [
+    "food-and-beverage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "onlyoffice",
+   "name": "ONLYOFFICE",
+   "aliases": [],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "oss-core"
+  },
+  {
+   "id": "open-webui",
+   "name": "Open WebUI",
+   "aliases": [],
+   "domains": [
+    "ai-tools"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "opentofu",
+   "name": "OpenTofu",
+   "aliases": [],
+   "domains": [
+    "public-cloud"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "oracle-cloud-infrastructure",
+   "name": "Oracle Cloud Infrastructure",
+   "aliases": [],
+   "domains": [
+    "public-cloud"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "oracle-micros",
+   "name": "Oracle MICROS",
+   "aliases": [],
+   "domains": [
+    "food-and-beverage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "oracle-netsuite",
+   "name": "Oracle NetSuite",
+   "aliases": [
+    "NetSuite"
+   ],
+   "domains": [
+    "erp",
+    "accounting"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "oracle-xstore",
+   "name": "Oracle Xstore",
+   "aliases": [],
+   "domains": [
+    "retail"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "orangehrm",
+   "name": "OrangeHRM",
+   "aliases": [],
+   "domains": [
+    "hris"
+   ],
+   "licence": "oss-core"
+  },
+  {
+   "id": "osticket",
+   "name": "osTicket",
+   "aliases": [],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "palo-alto-cortex-xdr",
+   "name": "Palo Alto Cortex XDR",
+   "aliases": [
+    "Cortex XDR"
+   ],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "parkmobile",
+   "name": "ParkMobile",
+   "aliases": [],
+   "domains": [
+    "parking"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "passport",
+   "name": "Passport",
+   "aliases": [],
+   "domains": [
+    "parking"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "paxton",
+   "name": "Paxton",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "paylocity",
+   "name": "Paylocity",
+   "aliases": [],
+   "domains": [
+    "hris"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "perplexity",
+   "name": "Perplexity",
+   "aliases": [],
+   "domains": [
+    "ai-tools"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "pipedrive",
+   "name": "Pipedrive",
+   "aliases": [],
+   "domains": [
+    "crm"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "postgis",
+   "name": "PostGIS",
+   "aliases": [],
+   "domains": [
+    "gis"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "prestashop",
+   "name": "PrestaShop",
+   "aliases": [],
+   "domains": [
+    "e-commerce"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "pretix",
+   "name": "Pretix",
+   "aliases": [],
+   "domains": [
+    "ticketing",
+    "event-management"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "qgis",
+   "name": "QGIS",
+   "aliases": [],
+   "domains": [
+    "gis"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "quickbooks",
+   "name": "QuickBooks",
+   "aliases": [
+    "Intuit QuickBooks",
+    "QBO",
+    "QuickBooks Online"
+   ],
+   "domains": [
+    "accounting"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "rekor",
+   "name": "Rekor",
+   "aliases": [],
+   "domains": [
+    "parking"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "revel",
+   "name": "Revel",
+   "aliases": [],
+   "domains": [
+    "food-and-beverage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "ringcentral",
+   "name": "RingCentral",
+   "aliases": [],
+   "domains": [
+    "telephony"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "ringcentral-contact-center",
+   "name": "RingCentral Contact Center",
+   "aliases": [],
+   "domains": [
+    "call-center"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "rippling",
+   "name": "Rippling",
+   "aliases": [],
+   "domains": [
+    "hris"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "rise-vision",
+   "name": "Rise Vision",
+   "aliases": [],
+   "domains": [
+    "digital-signage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "sage-intacct",
+   "name": "Sage Intacct",
+   "aliases": [],
+   "domains": [
+    "accounting"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "saleor",
+   "name": "Saleor",
+   "aliases": [],
+   "domains": [
+    "e-commerce"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "salesforce",
+   "name": "Salesforce",
+   "aliases": [
+    "SFDC",
+    "Salesforce CRM",
+    "Salesforce Sales Cloud"
+   ],
+   "domains": [
+    "crm"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "salesforce-marketing-cloud",
+   "name": "Salesforce Marketing Cloud",
+   "aliases": [],
+   "domains": [
+    "marketing-communication"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "salto",
+   "name": "Salto",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "samsung-magicinfo",
+   "name": "Samsung MagicINFO",
+   "aliases": [],
+   "domains": [
+    "digital-signage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "sap-s-4hana",
+   "name": "SAP S/4HANA",
+   "aliases": [
+    "S/4HANA",
+    "S4HANA",
+    "SAP S4"
+   ],
+   "domains": [
+    "erp"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "sap-successfactors",
+   "name": "SAP SuccessFactors",
+   "aliases": [],
+   "domains": [
+    "hris"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "screencloud",
+   "name": "ScreenCloud",
+   "aliases": [],
+   "domains": [
+    "digital-signage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "screenly",
+   "name": "Screenly",
+   "aliases": [],
+   "domains": [
+    "digital-signage"
+   ],
+   "licence": "oss-core"
+  },
+  {
+   "id": "sentinelone",
+   "name": "SentinelOne",
+   "aliases": [],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "servicenow",
+   "name": "ServiceNow",
+   "aliases": [
+    "SNOW",
+    "ServiceNow ITSM"
+   ],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "shopify",
+   "name": "Shopify",
+   "aliases": [],
+   "domains": [
+    "e-commerce"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "shopify-pos",
+   "name": "Shopify POS",
+   "aliases": [],
+   "domains": [
+    "retail"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "signupgenius",
+   "name": "SignUpGenius",
+   "aliases": [],
+   "domains": [
+    "volunteer-services"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "simpplr",
+   "name": "Simpplr",
+   "aliases": [],
+   "domains": [
+    "intranet"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "skidata",
+   "name": "SKIDATA",
+   "aliases": [],
+   "domains": [
+    "parking"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "slack",
+   "name": "Slack",
+   "aliases": [],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "sophos-intercept-x",
+   "name": "Sophos Intercept X",
+   "aliases": [
+    "Sophos"
+   ],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "spektrix",
+   "name": "Spektrix",
+   "aliases": [],
+   "domains": [
+    "ticketing"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "sprout-social",
+   "name": "Sprout Social",
+   "aliases": [],
+   "domains": [
+    "marketing-communication"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "square-for-restaurants",
+   "name": "Square for Restaurants",
+   "aliases": [
+    "Square POS Restaurants"
+   ],
+   "domains": [
+    "food-and-beverage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "square-for-retail",
+   "name": "Square for Retail",
+   "aliases": [
+    "Square Retail"
+   ],
+   "domains": [
+    "retail"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "squarespace",
+   "name": "Squarespace",
+   "aliases": [],
+   "domains": [
+    "e-commerce"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "staffbase",
+   "name": "Staffbase",
+   "aliases": [],
+   "domains": [
+    "intranet"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "suitecrm",
+   "name": "SuiteCRM",
+   "aliases": [],
+   "domains": [
+    "crm"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "swoogo",
+   "name": "Swoogo",
+   "aliases": [],
+   "domains": [
+    "event-management"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "t2-systems",
+   "name": "T2 Systems",
+   "aliases": [],
+   "domains": [
+    "parking"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "talkdesk",
+   "name": "Talkdesk",
+   "aliases": [],
+   "domains": [
+    "call-center"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "tessitura",
+   "name": "Tessitura",
+   "aliases": [],
+   "domains": [
+    "ticketing"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "ticket-tailor",
+   "name": "Ticket Tailor",
+   "aliases": [],
+   "domains": [
+    "ticketing"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "toast",
+   "name": "Toast",
+   "aliases": [],
+   "domains": [
+    "food-and-beverage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "topdesk",
+   "name": "TOPdesk",
+   "aliases": [],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "trello",
+   "name": "Trello",
+   "aliases": [],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "tryton",
+   "name": "Tryton",
+   "aliases": [],
+   "domains": [
+    "erp"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "twenty",
+   "name": "Twenty",
+   "aliases": [],
+   "domains": [
+    "crm"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "twilio-flex",
+   "name": "Twilio Flex",
+   "aliases": [],
+   "domains": [
+    "call-center"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "ukg",
+   "name": "UKG",
+   "aliases": [],
+   "domains": [
+    "hris"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "velociraptor",
+   "name": "Velociraptor",
+   "aliases": [],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "verkada",
+   "name": "Verkada",
+   "aliases": [],
+   "domains": [
+    "access-control"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "vivenu",
+   "name": "Vivenu",
+   "aliases": [],
+   "domains": [
+    "ticketing"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "volgistics",
+   "name": "Volgistics",
+   "aliases": [],
+   "domains": [
+    "volunteer-services"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "volunteerhub",
+   "name": "VolunteerHub",
+   "aliases": [],
+   "domains": [
+    "volunteer-services"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "wazuh",
+   "name": "Wazuh",
+   "aliases": [],
+   "domains": [
+    "endpoint-security"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "wealthengine",
+   "name": "WealthEngine",
+   "aliases": [],
+   "domains": [
+    "wealth-screening"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "whova",
+   "name": "Whova",
+   "aliases": [],
+   "domains": [
+    "event-management"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "wiki-js",
+   "name": "Wiki.js",
+   "aliases": [],
+   "domains": [
+    "intranet"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "wild-apricot",
+   "name": "Wild Apricot",
+   "aliases": [
+    "Wild Apricot by Personify"
+   ],
+   "domains": [
+    "membership"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "windfall",
+   "name": "Windfall",
+   "aliases": [],
+   "domains": [
+    "wealth-screening"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "woocommerce",
+   "name": "WooCommerce",
+   "aliases": [],
+   "domains": [
+    "e-commerce"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "workday",
+   "name": "Workday",
+   "aliases": [],
+   "domains": [
+    "hris"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "xero",
+   "name": "Xero",
+   "aliases": [],
+   "domains": [
+    "accounting"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "xibo",
+   "name": "Xibo",
+   "aliases": [],
+   "domains": [
+    "digital-signage"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "xwiki",
+   "name": "XWiki",
+   "aliases": [],
+   "domains": [
+    "intranet"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "yodeck",
+   "name": "Yodeck",
+   "aliases": [],
+   "domains": [
+    "digital-signage"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "zammad",
+   "name": "Zammad",
+   "aliases": [],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "zendesk",
+   "name": "Zendesk",
+   "aliases": [],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "znuny",
+   "name": "Znuny",
+   "aliases": [],
+   "domains": [
+    "itsm-helpdesk"
+   ],
+   "licence": "foss"
+  },
+  {
+   "id": "zoho-books",
+   "name": "Zoho Books",
+   "aliases": [],
+   "domains": [
+    "accounting"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "zoho-crm",
+   "name": "Zoho CRM",
+   "aliases": [],
+   "domains": [
+    "crm"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "zoho-workplace",
+   "name": "Zoho Workplace",
+   "aliases": [],
+   "domains": [
+    "business-productivity"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "zoom-contact-center",
+   "name": "Zoom Contact Center",
+   "aliases": [],
+   "domains": [
+    "call-center"
+   ],
+   "licence": "commercial"
+  },
+  {
+   "id": "zoom-phone",
+   "name": "Zoom Phone",
+   "aliases": [
+    "Zoom Voice"
+   ],
+   "domains": [
+    "telephony"
+   ],
+   "licence": "commercial"
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "organization": "",
+    "radar_title": "",
+    "audience": "",
+    "purpose": "",
+    "created": "",
+    "updated": "",
+    "depth": "standard",
+    "evidence_mode": "ask",
+    "hold_label": "Caution",
+    "quadrant_scheme": "business-domains",
+    "repo_base_url": "",
+    "owner": "",
+    "edition": "",
+    "published": "",
+    "tagline": "",
+    "intro": "",
+    "contributors": [],
+    "how_to_nominate": "",
+    "cadence": "",
+    "next_review": "",
+    "previous_edition": ""
+  },
+  "progress": {
+    "phase": 0,
+    "current_quadrant": null,
+    "current_domain": null,
+    "last_checkpoint": null,
+    "notes": []
+  },
+  "quadrants": [],
+  "rings": [],
+  "domains": {},
+  "blips": [],
+  "themes": [],
+  "actions": [],
+  "dropped": []
+}

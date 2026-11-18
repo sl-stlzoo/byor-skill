@@ -1,0 +1,48 @@
+# Radar-wide defaults. Edit freely, or override in config.local/settings.yaml (see byor-config-editor).
+schema_version: 1
+
+# Which quadrant scheme from quadrants.yaml to start from.
+quadrant_scheme: business-domains      # business-domains | thoughtworks-classic | custom
+
+# Fourth ring label. BYOR accepts "Hold" (any case) and shows it as "Caution" in current releases.
+hold_label: Caution                     # Caution | Hold  (Caution is the current Thoughtworks name; "hold" data is still accepted)
+
+# Interview depth. The agent asks the user to pick one in Phase 0.
+default_depth: standard                 # quick | standard | deep
+depth_profiles:
+  quick:    { questions_per_domain: 3, max_blips_per_domain: 4,  seed_menu: true, rubric_questions: 2 }
+  standard: { questions_per_domain: 5, max_blips_per_domain: 6,  seed_menu: true, rubric_questions: 4 }
+  deep:     { questions_per_domain: 8, max_blips_per_domain: 10, seed_menu: true, rubric_questions: 6 }
+
+# Readability guard-rails (soft limits; the validator WARNS, never blocks).
+soft_limits:
+  total_blips: 120
+  blips_per_quadrant: 40
+  description_words_min: 15
+  description_words_max: 140
+  name_chars_max: 40
+
+# How the agent may use the web.
+evidence_mode: ask                      # ask | user-only | web-assisted
+#  user-only     -> descriptions use ONLY what the user said.
+#  web-assisted  -> agent may verify tool names/ownership/EOL and add public facts, tagged "(public info)".
+#  ask           -> agent asks once in Phase 0 and records the answer.
+
+# State file location (relative to the user's working directory).
+state_file: radar-state.json
+output_dir: radar-output
+
+editions:                               # half-yearly by default; snapshots live in ./editions next to radar-state.json
+  cadence: half-yearly                  # half-yearly | quarterly | yearly (the id is still YYYY-H1 / YYYY-H2 unless you pass --edition)
+  keep: 4                               # newest 4 snapshots = 3 previous + current (about two years)
+
+site:                                   # single-page static site (scripts/build_site.py)
+  accent: "#0f766e"
+  indexable: false                      # false = <meta robots noindex>; the radar may reveal internal tools and gaps
+  themes_target: 3                      # canonical radars lead with 3-4 themes; ask for this many
+  edition_label: "Edition 1"
+
+ui:
+  prefer_tappable_choices: true         # use the platform's ask-user/choice tool when it exists
+  max_questions_per_message: 1          # one question (or one tight cluster) at a time
+  show_progress_footer: true            # e.g. "Quadrant 2/4 · Domain 3/8 · 41% overall"

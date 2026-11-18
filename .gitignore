@@ -1,0 +1,31 @@
+# Local radar data
+radar-state.json
+radar-output/
+editions/
+config.local/
+
+# Local consortium data (examples are versioned separately)
+/inbox*/
+/round/
+/round-output*/
+/roster.json
+/narrative.json
+/*share-profile*.json
+/*contribution*.json
+/round-kit*.json
+
+# Local secrets and Python environments
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+.venv/
+venv/
+env/
+
+# Python caches
+.pytest_cache/
+__pycache__/
+*.pyc

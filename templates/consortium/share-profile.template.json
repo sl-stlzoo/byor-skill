@@ -1,0 +1,20 @@
+{
+  "schema": "byor-share-profile/1",
+  "round_id": "2026-r1",
+  "org_name": "Example Community Museum",
+  "attribution": "named",
+  "profile": { "sector": "nonprofit", "size_band": "50-249", "region": "north-america" },
+  "calibration": {
+    "adopt_min_experience": "6-12m",
+    "adopt_requires_owner": true,
+    "adopt_requires_security_review": true,
+    "trial_requires_real_use": true,
+    "caution_meaning": "bad-experience"
+  },
+  "exclude_domains": [],
+  "tool_map": { "Example Tool Name": "registry-id-or-custom" },
+  "blips": {
+    "Example Tool Name": { "include": true, "experience": "1-3y", "scale": "organisation-wide", "caution_tags": [], "rationale": "" }
+  },
+  "consent": { "acknowledged_withdrawal": false, "acknowledged_attribution": false, "acknowledged_convener_sees_name": false, "reviewed_preview": false }
+}

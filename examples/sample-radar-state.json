@@ -1,0 +1,366 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "organization": "Example Community Museum",
+    "radar_title": "Example Museum Software Radar 2026",
+    "audience": "Leadership team and IT committee",
+    "purpose": "Standardise and plan software investments",
+    "created": "2026-11-12",
+    "updated": "2026-11-12",
+    "depth": "quick",
+    "evidence_mode": "user-only",
+    "hold_label": "Caution",
+    "quadrant_scheme": "business-domains",
+    "repo_base_url": "",
+    "owner": "",
+    "edition": "Edition 1",
+    "published": "2026-11-12",
+    "tagline": "An opinionated guide to the software we use, trial, explore and question",
+    "cadence": "Twice a year",
+    "next_review": "May 2027",
+    "how_to_nominate": "Email the IT lead with the tool, what you used it for and how it went.",
+    "contributors": [
+      {
+        "name": "Sam Rivera",
+        "role": "IT lead"
+      },
+      {
+        "name": "Priya Shah",
+        "role": "Operations"
+      },
+      {
+        "name": "Jordan Lee",
+        "role": "Membership"
+      }
+    ]
+  },
+  "progress": {
+    "phase": 6,
+    "current_quadrant": null,
+    "current_domain": null,
+    "last_checkpoint": null,
+    "notes": []
+  },
+  "quadrants": [
+    {
+      "id": "business-ops",
+      "name": "Business Operations & Finance"
+    },
+    {
+      "id": "customers-members",
+      "name": "Customers & Members"
+    },
+    {
+      "id": "service-workplace",
+      "name": "Service & Workplace"
+    },
+    {
+      "id": "security-infra",
+      "name": "Security & Infrastructure"
+    }
+  ],
+  "rings": [
+    {
+      "id": "adopt",
+      "name": "Adopt"
+    },
+    {
+      "id": "trial",
+      "name": "Trial"
+    },
+    {
+      "id": "assess",
+      "name": "Assess"
+    },
+    {
+      "id": "hold",
+      "name": "Caution"
+    }
+  ],
+  "domains": {
+    "erp": {
+      "quadrant": "business-ops",
+      "status": "pending",
+      "notes": ""
+    },
+    "business-productivity": {
+      "quadrant": "service-workplace",
+      "status": "done",
+      "notes": ""
+    },
+    "access-control": {
+      "quadrant": "security-infra",
+      "status": "pending",
+      "notes": ""
+    },
+    "ticketing": {
+      "quadrant": "customers-members",
+      "status": "pending",
+      "notes": ""
+    },
+    "membership": {
+      "quadrant": "customers-members",
+      "status": "done",
+      "notes": ""
+    },
+    "crm": {
+      "quadrant": "customers-members",
+      "status": "done",
+      "notes": ""
+    },
+    "retail": {
+      "quadrant": "business-ops",
+      "status": "done",
+      "notes": ""
+    },
+    "e-commerce": {
+      "quadrant": "customers-members",
+      "status": "pending",
+      "notes": ""
+    },
+    "food-and-beverage": {
+      "quadrant": "business-ops",
+      "status": "pending",
+      "notes": ""
+    },
+    "itsm-helpdesk": {
+      "quadrant": "service-workplace",
+      "status": "done",
+      "notes": ""
+    },
+    "call-center": {
+      "quadrant": "service-workplace",
+      "status": "pending",
+      "notes": ""
+    },
+    "volunteer-services": {
+      "quadrant": "customers-members",
+      "status": "pending",
+      "notes": ""
+    },
+    "event-management": {
+      "quadrant": "customers-members",
+      "status": "pending",
+      "notes": ""
+    },
+    "hris": {
+      "quadrant": "business-ops",
+      "status": "pending",
+      "notes": ""
+    },
+    "accounting": {
+      "quadrant": "business-ops",
+      "status": "done",
+      "notes": ""
+    },
+    "wealth-screening": {
+      "quadrant": "customers-members",
+      "status": "pending",
+      "notes": ""
+    },
+    "endpoint-security": {
+      "quadrant": "security-infra",
+      "status": "done",
+      "notes": ""
+    },
+    "public-cloud": {
+      "quadrant": "security-infra",
+      "status": "pending",
+      "notes": ""
+    },
+    "parking": {
+      "quadrant": "business-ops",
+      "status": "pending",
+      "notes": ""
+    },
+    "digital-signage": {
+      "quadrant": "service-workplace",
+      "status": "pending",
+      "notes": ""
+    },
+    "gis": {
+      "quadrant": "security-infra",
+      "status": "pending",
+      "notes": ""
+    },
+    "marketing-communication": {
+      "quadrant": "customers-members",
+      "status": "pending",
+      "notes": ""
+    },
+    "intranet": {
+      "quadrant": "service-workplace",
+      "status": "pending",
+      "notes": ""
+    },
+    "telephony": {
+      "quadrant": "service-workplace",
+      "status": "pending",
+      "notes": ""
+    },
+    "ai-tools": {
+      "quadrant": "security-infra",
+      "status": "done",
+      "notes": ""
+    }
+  },
+  "blips": [
+    {
+      "name": "QuickBooks",
+      "ring": "adopt",
+      "quadrant": "business-ops",
+      "domain": "accounting",
+      "isNew": false,
+      "status": "",
+      "description": "QuickBooks is our general ledger, payables and receivables for the single legal entity. Adopt: used daily for three years with a named owner and tested monthly backups. Watch-out: fund reporting needs manual spreadsheets. Keep as the ledger of record and review fund accounting options at contract renewal.",
+      "owner": "IT lead",
+      "confidence": "medium",
+      "evidence": [
+        "user-stated"
+      ],
+      "last_reviewed": "2026-11-12"
+    },
+    {
+      "name": "Odoo POS",
+      "ring": "trial",
+      "quadrant": "business-ops",
+      "domain": "retail",
+      "isNew": true,
+      "status": "New",
+      "description": "Odoo POS is being piloted in the museum shop for stock and till sales. Trial: two months in one site with sales reconciled weekly. Watch-out: card terminal integration needs staff training. Expand to the cafe once offline mode is tested.",
+      "owner": "IT lead",
+      "confidence": "medium",
+      "evidence": [
+        "user-stated"
+      ],
+      "last_reviewed": "2026-11-12",
+      "radial": 0.1
+    },
+    {
+      "name": "Neon One",
+      "ring": "adopt",
+      "quadrant": "customers-members",
+      "domain": "membership",
+      "isNew": false,
+      "status": "",
+      "description": "Neon One manages memberships, renewals and donor records. Adopt: it is the single record for members with automatic renewals. Watch-out: reports are limited. Use it as the default for any new member programme.",
+      "owner": "IT lead",
+      "confidence": "medium",
+      "evidence": [
+        "user-stated"
+      ],
+      "last_reviewed": "2026-11-12"
+    },
+    {
+      "name": "CiviCRM",
+      "ring": "assess",
+      "quadrant": "customers-members",
+      "domain": "crm",
+      "isNew": true,
+      "status": "",
+      "description": "CiviCRM is being explored as an open source alternative to our paid member and donor database. Assess: only a demo instance exists with no live data. Next step: a data-migration proof of concept and a hosting cost estimate.",
+      "owner": "IT lead",
+      "confidence": "medium",
+      "evidence": [
+        "user-stated"
+      ],
+      "last_reviewed": "2026-11-12"
+    },
+    {
+      "name": "Zendesk",
+      "ring": "hold",
+      "quadrant": "service-workplace",
+      "domain": "itsm-helpdesk",
+      "isNew": false,
+      "status": "Moved Out",
+      "description": "Zendesk is used for IT requests only by two staff. Hold: licence cost is high for the usage and a bundled helpdesk is available in Microsoft 365. Freeze new use and plan migration of the knowledge base before renewal.",
+      "owner": "IT lead",
+      "confidence": "medium",
+      "evidence": [
+        "user-stated"
+      ],
+      "last_reviewed": "2026-11-12"
+    },
+    {
+      "name": "Microsoft 365",
+      "ring": "adopt",
+      "quadrant": "service-workplace",
+      "domain": "business-productivity",
+      "isNew": false,
+      "status": "",
+      "description": "Microsoft 365 provides email, files, chat and meetings for all staff. Adopt: company-wide for four years with MFA enforced. Watch-out: sharing settings are too open. Default for collaboration; review external sharing quarterly.",
+      "owner": "IT lead",
+      "confidence": "medium",
+      "evidence": [
+        "user-stated"
+      ],
+      "last_reviewed": "2026-11-12"
+    },
+    {
+      "name": "Microsoft Defender for Endpoint",
+      "ring": "trial",
+      "quadrant": "security-infra",
+      "domain": "endpoint-security",
+      "isNew": true,
+      "status": "",
+      "description": "Defender for Endpoint is deployed to 20 of 60 laptops. Trial: pilot with weekly alert review by the IT lead. Watch-out: alerts need triage time. Expand to all laptops after the pilot report in Q1.",
+      "owner": "IT lead",
+      "confidence": "medium",
+      "evidence": [
+        "user-stated"
+      ],
+      "last_reviewed": "2026-11-12"
+    },
+    {
+      "name": "Microsoft Copilot",
+      "ring": "assess",
+      "quadrant": "security-infra",
+      "domain": "ai-tools",
+      "isNew": true,
+      "status": "",
+      "description": "Microsoft Copilot is being evaluated for drafting and meeting summaries. Assess: five volunteers testing with no sensitive data allowed. Next step: agree a data-handling policy and measure time saved before any wider purchase.",
+      "owner": "IT lead",
+      "confidence": "medium",
+      "evidence": [
+        "user-stated"
+      ],
+      "last_reviewed": "2026-11-12"
+    }
+  ],
+  "themes": [
+    {
+      "title": "Fewer tools, clearer owners",
+      "body": [
+        "Across the interviews the same pattern kept appearing: we pay for several tools that overlap. [[Zendesk]] is used by two people while [[Microsoft 365]] already offers a helpdesk, so we now advise against starting anything new in it.",
+        "The tools we trust most all have a named owner and a tested backup, which is why [[QuickBooks]] and [[Neon One]] sit in Adopt. We expect to apply that same bar to every Trial item before the next review."
+      ]
+    },
+    {
+      "title": "Open source on the horizon",
+      "body": [
+        "Two open source options, [[CiviCRM]] and [[Odoo POS]], moved onto the radar this edition. Neither is proven here yet, but both could reduce licence cost, so we will watch hosting and support effort closely.",
+        "In the coming months we may see a real migration proof of concept for CiviCRM."
+      ]
+    },
+    {
+      "title": "Careful steps with AI and security",
+      "body": [
+        "We are protecting laptops first with [[Microsoft Defender for Endpoint]], and exploring [[Microsoft Copilot]] only with non-sensitive data. We caution against wider AI use until a data-handling policy exists."
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "action": "Migrate IT knowledge base off Zendesk",
+      "tool": "Zendesk",
+      "owner": "IT lead",
+      "by": "Before renewal"
+    },
+    {
+      "action": "Expand Defender to all laptops",
+      "tool": "Microsoft Defender for Endpoint",
+      "owner": "IT lead",
+      "by": "Q1 2027"
+    }
+  ]
+}
