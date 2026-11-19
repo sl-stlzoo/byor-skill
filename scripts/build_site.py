@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a single-file, self-contained static site (index.html) from radar-state.json.  (stdlib only)
 
-Usage:  python scripts/build_site.py radar-state.json [--out radar-output/index.html] [--accent "#0f766e"] [--public]
+Usage:  python scripts/build_site.py radar-state.json [--out radar-output/index.html] [--theme theme.json] [--accent "#0f766e"] [--public]
 No network requests, no external fonts or scripts. Core content works without JavaScript; JS adds filtering,
 quadrant zoom and a theme toggle. Default is <meta name="robots" content="noindex">; pass --public to allow indexing.
 """
@@ -124,8 +124,32 @@ def csv_uri(rows):
     return "data:text/csv;charset=utf-8;base64," + base64.b64encode(buf.getvalue().encode()).decode()
 
 
-def build(state, accent, public, changes=None, snaps=None, archive=None):
-    if not re.fullmatch(r"#[0-9a-fA-F]{3,8}", accent or ""): raise SystemExit("--accent must be a hex colour such as #0f766e")
+THEME_DEFAULTS = {"mode": "system", "accent": "#d6453d", "q0": "#287d70",
+                  "q1": "#aa641d", "q2": "#7955a2", "q3": "#b23e62"}
+
+
+def theme_config(theme=None, accent=None):
+    if theme is None:
+        theme = {}
+    if not isinstance(theme, dict) or set(theme) - THEME_DEFAULTS.keys():
+        raise ValueError("Theme must be an object with optional mode, accent, q0, q1, q2 and q3 keys.")
+    result = {**THEME_DEFAULTS, **theme}
+    if accent is not None:
+        result["accent"] = accent
+    if result["mode"] not in ("system", "light", "dark"):
+        raise ValueError("Theme mode must be system, light or dark.")
+    for key in THEME_DEFAULTS.keys() - {"mode"}:
+        color = result[key]
+        if not isinstance(color, str) or not re.fullmatch(r"#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})", color):
+            raise ValueError(f"Theme {key} must be a hex colour such as #d6453d.")
+        if len(color) == 4:
+            color = "#" + "".join(c * 2 for c in color[1:])
+        result[key] = color.lower()
+    return result
+
+
+def build(state, accent, public, changes=None, snaps=None, archive=None, theme=None):
+    branding = theme_config(theme, accent)
     m = state["meta"]; today = datetime.date.today()
     for r in state["rings"]:
         r["_name"] = (m.get("hold_label") or "Caution") if r["id"] == "hold" else r["name"]
@@ -216,18 +240,19 @@ def build(state, accent, public, changes=None, snaps=None, archive=None):
         "<b>Then Trial.</b> Learn about the ones relevant to you and see what a trial would take.",
         "<b>Assess last.</b> Worth knowing about, but lower in priority unless it fits your situation perfectly."])
     noindex = "" if public else '<meta name="robots" content="noindex, nofollow">'
-    out = TEMPLATE
-    for k, v in {
+    script = re.search(r"<script>(.*?)</script>", TEMPLATE, re.S).group(1)
+    digest = base64.b64encode(hashlib.sha256(script.encode()).digest()).decode()
+    csp = ("default-src 'none'; script-src 'sha256-%s'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'" % digest)
+    palette = ";".join(f"--brand-{key}:{branding[key]}" for key in THEME_DEFAULTS if key != "mode")
+    values = {
         "TITLE": esc(title), "ORG": esc(org), "EDITION": esc(edition), "PUBLISHED": esc(pub_label), "TAGLINE": esc(tagline), "INTRO": esc(intro),
-        "NOINDEX": noindex, "ACCENT": esc(accent), "TABS": q_tabs, "RCHIPS": r_chips, "SVG": svg_radar(state, ordered), "STATS": stat_sec,
+        "NOINDEX": noindex, "PALETTE": palette, "MODE": branding["mode"], "TABS": q_tabs, "RCHIPS": r_chips, "SVG": svg_radar(state, ordered), "STATS": stat_sec,
+        "CSP": f'<meta http-equiv="Content-Security-Policy" content="{csp}">',
         "NEW": str(n_new), "MOVED": str(n_moved), "TOTAL": str(len(ordered)), "RINGCARDS": ring_cards, "THEMES": themes_sec, "CARDS": cards, "ACTIONS": act_sec,
         "KEEP": keep, "FAQ": faq_html, "CONTRIB": contrib_html, "CREDIT": esc(CREDIT), "CHANGES": changes_sec, "CHANGESNAV": changes_nav, "ARCHIVE": archive_html, "CSV": csvu, "JSON": jsonu, "ISO": today.isoformat(),
         "NEXTREVIEW": esc(m.get("next_review") or "to be scheduled"),
-    }.items(): out = out.replace(f"%%{k}%%", v)
-    script = re.search(r"<script>(.*?)</script>", out, re.S).group(1)
-    digest = base64.b64encode(hashlib.sha256(script.encode()).digest()).decode()
-    csp = ("default-src 'none'; script-src 'sha256-%s'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'" % digest)
-    out = out.replace("%%CSP%%", f'<meta http-equiv="Content-Security-Policy" content="{csp}">')
+    }
+    out = re.sub(r"%%([A-Z]+)%%", lambda m: values[m[1]], TEMPLATE)
     warns = []
     for t in state.get("themes", []):
         for tok in re.findall(r"\[\[(.+?)\]\]", " ".join(t.get("body", []))):
@@ -238,23 +263,25 @@ def build(state, accent, public, changes=None, snaps=None, archive=None):
 
 
 TEMPLATE = r'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" data-theme="%%MODE%%" style="%%PALETTE%%"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%%TITLE%%</title><meta name="description" content="%%TAGLINE%%"><meta name="color-scheme" content="light dark">%%CSP%%%%NOINDEX%%
 <!-- Generated %%ISO%% by %%CREDIT%%. Method inspired by the Thoughtworks Technology Radar (https://www.thoughtworks.com/radar/faq). Not affiliated with Thoughtworks. -->
 <style>
-:root{--bg:#fbfaf7;--ink:#1c1b19;--mute:#5d5a54;--line:#dedad1;--card:#fff;--accent:%%ACCENT%%;--q0:#0f766e;--q1:#b45309;--q2:#6d28d9;--q3:#be123c;--bi:#fff;--band0:#0000000d;--band1:#00000009;--band2:#00000006;--band3:#00000003}
-:root[data-theme=dark]{--bg:#12110f;--ink:#f1eee8;--mute:#a8a39a;--line:#35322d;--card:#1a1815;--q0:#5eead4;--q1:#fbbf24;--q2:#c4b5fd;--q3:#fda4af;--bi:#111;--band0:#ffffff14;--band1:#ffffff0e;--band2:#ffffff09;--band3:#ffffff05}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#12110f;--ink:#f1eee8;--mute:#a8a39a;--line:#35322d;--card:#1a1815;--q0:#5eead4;--q1:#fbbf24;--q2:#c4b5fd;--q3:#fda4af;--bi:#111;--band0:#ffffff14;--band1:#ffffff0e;--band2:#ffffff09;--band3:#ffffff05}}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:64px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Georgia,"Iowan Old Style","Palatino Linotype",serif}
+:root{color-scheme:light;--bg:#fff;--ink:#171717;--mute:#525252;--line:#d4d4d4;--card:#fff;--soft:#f5f6f4;--shade:#000;--bi:#fff;--band0:#0000000d;--band1:#00000009;--band2:#00000006;--band3:#00000003}
+:root[data-theme=dark]{color-scheme:dark;--bg:#121212;--ink:#f5f5f5;--mute:#b5b5b5;--line:#404040;--card:#202020;--soft:#181818;--shade:#fff;--bi:#121212;--band0:#ffffff14;--band1:#ffffff0e;--band2:#ffffff09;--band3:#ffffff05}
+@media(prefers-color-scheme:dark){:root[data-theme=system]{color-scheme:dark;--bg:#121212;--ink:#f5f5f5;--mute:#b5b5b5;--line:#404040;--card:#202020;--soft:#181818;--shade:#fff;--bi:#121212;--band0:#ffffff14;--band1:#ffffff0e;--band2:#ffffff09;--band3:#ffffff05}}
+:root{--accent:color-mix(in srgb,var(--brand-accent) 46%,var(--shade));--q0:color-mix(in srgb,var(--brand-q0) 46%,var(--shade));--q1:color-mix(in srgb,var(--brand-q1) 46%,var(--shade));--q2:color-mix(in srgb,var(--brand-q2) 46%,var(--shade));--q3:color-mix(in srgb,var(--brand-q3) 46%,var(--shade))}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:64px}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;overflow-wrap:anywhere;-webkit-tap-highlight-color:#d6453d30}
 h1,h2,h3,h4,h5,.ui,button,nav,.tag,.meta,table,summary{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 a{color:var(--accent)}main,header .in,footer .in{max-width:1100px;margin:0 auto;padding:0 20px}
 .skip{position:absolute;left:-999px}.skip:focus{left:12px;top:8px;background:var(--card);padding:6px 10px;z-index:9}
 nav.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);font-size:14px}
 nav.top .in{display:flex;gap:18px;align-items:center;overflow-x:auto;white-space:nowrap;padding:10px 20px;max-width:1100px;margin:auto}nav.top a{text-decoration:none;color:var(--mute)}nav.top a:hover{color:var(--ink)}nav.top button{margin-left:auto}
-header.hero{padding:64px 0 36px;border-bottom:1px solid var(--line)}.eyebrow{font:600 13px system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+header.hero{padding:64px 0 36px;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 5% 0%,color-mix(in srgb,var(--brand-accent) 20%,transparent),transparent 64%),var(--soft)}.eyebrow{font:600 13px system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 h1{font-size:clamp(34px,6vw,64px);line-height:1.05;margin:.3em 0 .2em;letter-spacing:-.02em}.tag-line{font-size:clamp(18px,2.4vw,24px);color:var(--mute);margin:0 0 20px;max-width:46ch}
 .lede{color:var(--mute);max-width:68ch}.intro{max-width:68ch;font-size:19px}
-.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn,button{font:600 14px system-ui;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:999px;cursor:pointer;text-decoration:none}.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn,button{font:600 14px system-ui;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:8px;cursor:pointer;text-decoration:none;touch-action:manipulation}.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--bi)}
+.btn:hover,button:hover{outline:2px solid var(--accent);outline-offset:1px}button:disabled{opacity:.55;cursor:not-allowed}h1,h2,h3{text-wrap:balance}
 h2{font-size:clamp(26px,3.4vw,36px);margin:0 0 .4em;letter-spacing:-.01em}section{padding:52px 0;border-bottom:1px solid var(--line)}
 .stats{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0 0}.stat{border:1px solid var(--line);border-radius:12px;padding:10px 16px;background:var(--card);min-width:96px}.stat b{display:block;font:700 26px system-ui}.stat span{font:13px system-ui;color:var(--mute)}
 .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 14px}.tab.on,.chip.tog.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.chip.tog{font-weight:500}
@@ -275,15 +302,26 @@ input[type=search]{font:15px system-ui;padding:9px 14px;border-radius:999px;bord
 ol.keep{max-width:68ch;padding-left:22px}details{border-bottom:1px solid var(--line);max-width:74ch}summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:16px}details p{margin:0 0 16px}
 footer{padding:36px 0 60px;color:var(--mute);font:14px/1.6 system-ui}footer a{color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-@media print{nav.top,.tools,.btns,.skip,#radarctl{display:none!important}body{background:#fff;color:#000;font-size:12pt}section{padding:18pt 0;break-inside:auto}.card{break-inside:avoid}details{display:block}details>*{display:block}#radar{max-height:none}}
+.theme-settings{max-width:none;margin-top:20px;padding:0 16px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card)}.theme-settings summary{color:var(--accent)}.palette{display:flex;flex-wrap:wrap;gap:14px 22px}.palette label{display:flex;align-items:center;gap:8px}.palette select,.palette input{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px;min-height:36px;font:inherit}.palette input{width:44px;cursor:pointer}.theme-settings p{font-size:14px;color:var(--mute)}
+@media(max-width:540px){.grid{grid-template-columns:minmax(0,1fr)}}
+@media print{nav.top,.tools,.btns,.skip,#radarctl,.theme-settings{display:none!important}:root[data-theme]{color-scheme:light;--bg:#fff;--ink:#171717;--mute:#525252;--line:#d4d4d4;--card:#fff;--soft:#f5f6f4;--shade:#000;--bi:#fff}body{background:#fff;color:#000;font-size:12pt}section{padding:18pt 0;break-inside:auto}.card{break-inside:avoid}details{display:block}details>*{display:block}#radar{max-height:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style></head><body>
 <a class="skip" href="#radar-sec">Skip to the radar</a>
-<nav class="top"><div class="in"><strong class="ui">%%ORG%%</strong><a href="#radar-sec">Radar</a><a href="#how">How to read</a>%%CHANGESNAV%%<a href="#themes">Themes</a><a href="#blips">Blips</a><a href="#actions">Actions</a><a href="#faq">FAQ</a><a href="#about">About</a><button id="theme" type="button" aria-label="Toggle light or dark theme">Theme</button></div></nav>
+<nav class="top" aria-label="Radar"><div class="in"><strong class="ui">%%ORG%%</strong><a href="#radar-sec">Radar</a><a href="#how">How to read</a>%%CHANGESNAV%%<a href="#themes">Themes</a><a href="#blips">Blips</a><a href="#actions">Actions</a><a href="#faq">FAQ</a><a href="#about">About</a><a hidden id="open-theme" href="#theme-settings">Theme</a></div></nav>
 <header class="hero"><div class="in"><div class="eyebrow">%%EDITION%% · %%PUBLISHED%%</div><h1>%%TITLE%%</h1><p class="tag-line">%%TAGLINE%%</p><p class="intro">%%INTRO%%</p>
 <div class="stats">%%STATS%%<div class="stat"><b>%%NEW%%</b><span>New</span></div><div class="stat"><b>%%MOVED%%</b><span>Moved</span></div></div>
 <div class="btns"><a class="btn pri" href="#radar-sec">Explore the radar</a><a class="btn" href="%%CSV%%" download="radar.csv">Download CSV</a><a class="btn" href="%%JSON%%" download="radar.json">Download JSON</a><button class="btn" id="print" type="button">Print or save as PDF</button></div></div></header>
 <main>
+<details class="theme-settings" id="theme-settings" hidden>
+<summary>Customise Radar Theme</summary>
+<p>Preview your brand colours and choose a light or dark appearance. For readability, colours are adjusted against the background. Nothing is saved until you download a copy.</p>
+<div class="palette" id="palette">
+<label>Appearance <select name="mode" id="theme-mode" autocomplete="off"><option value="system">Device setting</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+</div>
+<div class="btns"><button type="button" id="save-theme-html">Download Branded HTML</button><button type="button" id="save-theme-json">Download Theme Settings</button><button type="button" id="reset-theme">Reset Preview</button></div>
+<p id="theme-status" role="status"></p>
+</details>
 <section id="radar-sec"><h2>The radar</h2><p class="lede">Each blip is one tool or practice. Rings show our recommendation; quadrants are topic areas. Select a blip to jump to its write-up.</p>
 <div id="radarctl" class="tools" role="toolbar" aria-label="Filter the radar">%%TABS%%<span aria-hidden="true">|</span>%%RCHIPS%%<input id="q" type="search" placeholder="Search blips" aria-label="Search blips"></div>
 <div class="radarwrap">%%SVG%%</div>
@@ -310,14 +348,41 @@ $('.tab').forEach(b=>b.onclick=()=>{view=b.dataset.view;$('.tab').forEach(x=>x.c
 $('.chip.tog').forEach(b=>b.onclick=()=>{const r=b.dataset.ring;rings.has(r)?rings.delete(r):rings.add(r);b.classList.toggle('on');apply()});
 document.getElementById('q').oninput=e=>{term=e.target.value.toLowerCase().trim();apply()};
 $('.blip').forEach(b=>{const id=b.getAttribute('href');b.onmouseenter=()=>document.querySelector(id)?.classList.add('hl');b.onmouseleave=()=>document.querySelector(id)?.classList.remove('hl')});
-document.getElementById('print').onclick=()=>print();const root=document.documentElement;document.getElementById('theme').onclick=()=>{const d=getComputedStyle(root).getPropertyValue('--bg').trim()==='#12110f';root.dataset.theme=d?'light':'dark'};
+document.getElementById('print').onclick=()=>print();
+const root=document.documentElement, id=s=>document.getElementById(s);
+// Save the unmodified markup so downloads don't inherit temporary filters or editor controls.
+const original=root.cloneNode(true), settings=id('theme-settings'), mode=id('theme-mode');
+const keys=['accent','q0','q1','q2','q3'], initial={mode:root.dataset.theme};
+const labels=['Accent',...$('.qh').map(h=>h.textContent.trim())];
+const inputs=keys.map((key,i)=>{
+  initial[key]=root.style.getPropertyValue('--brand-'+key).trim();
+  const label=document.createElement('label'), input=document.createElement('input');
+  label.textContent=labels[i]||'Quadrant '+i;
+  input.type='color';input.name=key;input.setAttribute('autocomplete','off');
+  label.append(input);id('palette').append(label);return input;
+});
+const config=()=>({mode:mode.value,...Object.fromEntries(keys.map((k,i)=>[k,inputs[i].value]))});
+function paint(node,theme){node.dataset.theme=theme.mode;keys.forEach(k=>node.style.setProperty('--brand-'+k,theme[k]));}
+function reset(){mode.value=initial.mode;inputs.forEach((input,i)=>input.value=initial[keys[i]]);paint(root,initial);}
+function download(content,type,filename){
+  const url=URL.createObjectURL(new Blob([content],{type})),a=document.createElement('a');
+  a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  id('theme-status').textContent='Download started: '+filename;
+}
+reset();settings.hidden=false;
+id('open-theme').hidden=false;
+id('open-theme').onclick=()=>{settings.open=true;};
+id('palette').oninput=()=>{paint(root,config());id('theme-status').textContent='';};
+id('reset-theme').onclick=()=>{reset();id('theme-status').textContent='Original theme restored.';};
+id('save-theme-json').onclick=()=>download(JSON.stringify(config(),null,2)+'\n','application/json','radar-theme.json');
+id('save-theme-html').onclick=()=>{paint(original,config());download('<!doctype html>\n'+original.outerHTML,'text/html;charset=utf-8','radar-branded.html');};
 if(innerWidth<640){const t=$('.tab')[1];t&&t.click()}apply()})();
 </script></body></html>'''
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("state"); ap.add_argument("--out"); ap.add_argument("--accent", default="#0f766e"); ap.add_argument("--public", action="store_true")
+    ap.add_argument("state"); ap.add_argument("--out"); ap.add_argument("--accent"); ap.add_argument("--theme"); ap.add_argument("--public", action="store_true")
     a = ap.parse_args()
     state = json.load(open(a.state, encoding="utf-8"))
     if not state.get("blips"): sys.exit("No blips in the state yet: finish at least one domain interview (Phase 5) before building the site.")
@@ -332,10 +397,17 @@ def main():
         snaps = {k: v for k, v in CE.load_all(edir).items() if k != cid}
         try: archive = json.load(open(os.path.join(edir, "index.json"), encoding="utf-8"))["editions"]
         except (OSError, ValueError, KeyError): archive = None
-    out, warns = build(state, a.accent, a.public, changes, snaps, archive)
+    try:
+        theme = json.load(open(a.theme, encoding="utf-8")) if a.theme else {}
+        if theme is None:
+            raise ValueError("Theme must be a JSON object, not null.")
+        theme = theme_config(theme, a.accent)
+    except (OSError, ValueError) as error:
+        ap.error(str(error))
+    out, warns = build(state, None, a.public, changes, snaps, archive, theme)
     path = a.out or os.path.join(os.path.dirname(os.path.abspath(a.state)), "radar-output", "index.html")
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    open(path, "w", encoding="utf-8").write(out)
+    open(path, "w", encoding="utf-8", newline="\n").write(out)
     print(f"Wrote {path} ({len(out)//1024} KB, {len(state['blips'])} blips)")
     for w in warns: print("WARNING", w)
 

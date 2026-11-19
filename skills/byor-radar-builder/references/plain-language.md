@@ -3,7 +3,7 @@
 Write like Hemingway. Short words. Short sentences. One idea at a time. A busy person on a phone should understand every line the first time.
 
 ## Rules
-1. **One question per message.** Ask it in 25 words or fewer. Put the question last.
+1. **One question per guided message.** Ask it in 25 words or fewer. Put the question last. In batch mode, group only unresolved questions and keep each short.
 2. **Short sentences.** Aim for 8 to 15 words. Never more than 25.
 3. **Plain words.** Say "use", not "utilize". Say "look into", not "evaluate". Say "tool", not "blip" or "solution".
 4. **Say what you mean.** No vague follow-ups like "Tell me more about that" or "Can you elaborate?". Ask for the exact fact: "How long have you used it?"

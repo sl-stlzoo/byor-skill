@@ -3,6 +3,44 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 PY = sys.executable
 STATE = ROOT / "examples/sample-radar-state.json"
 
+
+def test_default_question_bank_covers_operational_systems():
+    text = (ROOT / "interview-questions.js").read_text(encoding="utf-8")
+    bank = json.loads(text.split("const interviewQuestions = ", 1)[1].rstrip().removesuffix(";"))
+    domains = {d["id"]: d for d in bank["domains"]}
+    required = {
+        "accounting", "budgeting", "fixed-assets", "development-fundraising", "admissions-pos",
+        "education-programmes", "purchasing", "event-management", "facility-work-orders", "cash-counting",
+        "hris", "document-management", "business-intelligence", "expense-tracking", "retail", "food-and-beverage",
+    }
+    assert required <= domains.keys()
+    assert "Fully cashless" in domains["cash-counting"]["clarify_options"]
+    assert all(domains[key]["probes"] for key in required)
+
+
+def test_offline_theme_config(tmp_path):
+    import base64
+    import hashlib
+    import re
+
+    theme = tmp_path / "theme.json"
+    out = tmp_path / "radar.html"
+    theme.write_text(json.dumps({"mode": "dark", "accent": "#abc", "q2": "#226688"}))
+    result = run("scripts/build_site.py", STATE, "--out", out, "--theme", theme, "--accent", "#579")
+    assert result.returncode == 0, result.stderr
+    page = out.read_text(encoding="utf-8")
+    assert 'data-theme="dark" style="--brand-accent:#557799;' in page
+    assert "--brand-q2:#226688" in page
+    assert 'id="save-theme-html"' in page
+    script = re.search(r"<script>(.*?)</script>", page, re.S)[1]
+    digest = base64.b64encode(hashlib.sha256(script.encode()).digest()).decode()
+    assert f"script-src 'sha256-{digest}'" in page
+
+    theme.write_text(json.dumps({"accent": "red; background:url(https://evil.example)"}))
+    result = run("scripts/build_site.py", STATE, "--out", out, "--theme", theme)
+    assert result.returncode != 0 and "must be a hex colour" in result.stderr
+    assert out.read_text(encoding="utf-8") == page
+
 def run(*args):
     return subprocess.run([PY, *map(str, args)], capture_output=True, text=True, cwd=ROOT)
 

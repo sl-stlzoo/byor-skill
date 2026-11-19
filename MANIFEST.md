@@ -21,7 +21,7 @@ Every file in the repository and what it is for. Generated files are marked (gen
 ## Config (edit to customise)
 | Path | Purpose |
 |---|---|
-| `config/domains.yaml` | The 25 starter software domains with probes, seed tools, rating lenses |
+| `config/domains.yaml` | Starter software domains shared by the guided interview and batch worksheet |
 | `config/quadrants.yaml` | Quadrant schemes and default domain mapping |
 | `config/rings.yaml` | Adopt / Trial / Assess / Caution meanings and criteria (canonical wording, paraphrased) |
 | `config/settings.yaml` | Depth profiles, soft limits, evidence mode, site and UI settings |

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212">
+  <meta name="description" content="Answer technology radar interview questions in one private, browser-only worksheet.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Batch Interview | BYOR</title>
+  <link rel="stylesheet" href="site.css">
+  <script defer src="interview-questions.js"></script>
+  <script defer src="interview.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="topbar" aria-label="Main"><div class="nav-inner">
+  <a class="wordmark" href="index.html">Technology Radar</a>
+  <a href="interview.html" aria-current="page">Batch Interview</a>
+  <a href="examples/output/index.html">Example Radar</a>
+</div></nav>
+<main id="main">
+  <header class="hero">
+    <div class="eyebrow">Build Your Own Radar</div>
+    <h1>Answer the radar interview on one page</h1>
+    <p class="lede">Start with the same software areas and questions as the guided interview. Fill in what you know, skip what doesn’t apply, then give your assistant everything at once.</p>
+    <p class="notice"><strong>Strictly client-side.</strong> The form reads files and builds exports in your browser. It never uploads answers, calls an AI service, or saves your draft when you leave. Review what you choose to share.</p>
+  </header>
+  <noscript><p class="notice">Enable JavaScript to use the worksheet, or use the CSV template and an assistant instead.</p></noscript>
+  <section class="box" aria-labelledby="csv-heading">
+    <h2 id="csv-heading">Start With a Spreadsheet, If You Prefer</h2>
+    <ol>
+      <li><a href="templates/byor-blank.csv" download>Download the blank Thoughtworks CSV template</a>.</li>
+      <li>Keep the headers and add one row per tool or practice. Use <strong>Adopt, Trial, Assess, Caution</strong>; <strong>Techniques, Platforms, Tools, Languages &amp; Frameworks</strong>; and <strong>TRUE</strong> or <strong>FALSE</strong> for <code>isNew</code>. Save as UTF-8 CSV.</li>
+      <li>Import it below to add editable blips, or attach it to a new AI chat with the <a href="BOOTSTRAP_PROMPT.md#byor-interview-batch-start">BYOR interview start prompt</a>.</li>
+    </ol>
+    <label for="import-csv">Import a CSV From Your Device</label>
+    <input id="import-csv" name="import-csv" type="file" accept=".csv,text/csv" autocomplete="off" disabled>
+    <p id="import-status" role="status" class="note"></p>
+  </section>
+  <nav aria-label="Interview sections"><ol class="stages">
+    <li><a href="#context">1. Context</a></li><li><a href="#areas">2. Software Areas</a></li>
+    <li><a href="#blips">3. Blips</a></li><li><a href="#export">4. Export</a></li>
+  </ol></nav>
+  <form id="interview" autocomplete="off">
+    <section class="box" id="context" aria-labelledby="context-heading">
+      <h2 id="context-heading">1. Set the Context</h2>
+      <p class="note">Leave unknowns blank. Use roles rather than staff names, and leave out secrets and confidential details.</p>
+      <div class="fields" id="context-fields"></div>
+      <details><summary>Tailor the Ring Criteria</summary><div class="fields" id="ring-fields"></div></details>
+      <details><summary>Set Up the Radar Story</summary><div class="fields" id="story-fields"></div></details>
+    </section>
+    <section class="box" id="areas" aria-labelledby="areas-heading">
+      <h2 id="areas-heading">2. Review Your Software Areas</h2>
+      <p class="note">Open the areas you know. Rename an area or add your own. Blank areas stay unanswered; mark an area not applicable if you want to skip it explicitly.</p>
+      <p role="status" id="area-count" class="note"></p>
+      <div id="domain-groups"></div>
+      <div class="row"><button id="add-area" class="alt" type="button" disabled>Add Software Area</button></div>
+    </section>
+    <section class="box" id="blips" aria-labelledby="blips-heading">
+      <h2 id="blips-heading">3. Add Individual Blips</h2>
+      <p class="note">Optional for the AI handoff: your assistant can draft blips from your answers above. For CSV, fill in all five Thoughtworks fields for each blip. Area and next action are for the assistant only.</p>
+      <div id="blip-list"></div>
+      <div class="row"><button id="add-blip" class="alt" type="button" disabled>Add Blip</button></div>
+    </section>
+    <section class="box" id="export" aria-labelledby="export-heading">
+      <h2 id="export-heading">4. Review &amp; Export</h2>
+      <p class="note">Copy the JSON prompt into a new chat. The CSV contains only blip rows, not your interview notes. Neither action sends anything to an assistant or publishes your radar.</p>
+      <div class="row">
+        <button id="copy-prompt" type="button" disabled>Copy JSON Prompt</button>
+        <button id="download-csv" class="alt" type="button" disabled>Download Thoughtworks CSV</button>
+      </div>
+      <p id="export-status" role="status" class="note"></p>
+      <div id="preview" hidden>
+        <label for="prompt">JSON Prompt Preview</label>
+        <textarea id="prompt" name="prompt" readonly spellcheck="false"></textarea>
+      </div>
+    </section>
+  </form>
+  <footer>Method adapted from the <a href="https://www.thoughtworks.com/radar/byor">Thoughtworks Technology Radar</a>. This project is independent and not endorsed by Thoughtworks.</footer>
+</main>
+</body>
+</html>

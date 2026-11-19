@@ -17,7 +17,7 @@ for p in pathlib.Path("scripts").glob("*.py"):
     for n in ast.walk(ast.parse(p.read_text())):
         mods = [a.name.split(".")[0] for a in n.names] if isinstance(n, ast.Import) else ([n.module.split(".")[0]] if isinstance(n, ast.ImportFrom) and n.module else [])
         bad += [f"{p}: {m}" for m in mods if m not in allowed and m not in {"state_to_radar","compare_editions","registry","validate_contribution","aggregate_round","build_benchmark","build_site"}]
-print("PASS  scripts import only the standard library (plus optional PyYAML in check_config.py)" if not bad else "FAIL  non-stdlib imports: " + ", ".join(bad)); sys.exit(1 if bad else 0)
+print("PASS  scripts import only the standard library (plus PyYAML for config checks and the question bank)" if not bad else "FAIL  non-stdlib imports: " + ", ".join(bad)); sys.exit(1 if bad else 0)
 PY
 
 echo "== 2. Instructions: every external domain mentioned (review this list) =="

@@ -36,6 +36,8 @@
 ## Domain notes (extra care)
 - **access-control**: separate physical and digital credentials into distinct blips.
 - **ticketing**: confirm admissions ticketing vs work tickets; move work tickets to itsm-helpdesk.
+- **cash-counting**: record fully cashless as a skip reason, not a software blip. For mixed sites, cover those that accept cash.
+- **Shared suites**: if one tool covers several areas (such as ticketing and admissions POS, or ERP and purchasing), use one blip and record the other areas in `also_in`.
 - **wealth-screening**: ask about consent and privacy policy; never record donor names or amounts.
 - **ai-tools**: ask about data-handling policy and shadow use; record self-hosted vs vendor-hosted.
 - **public-cloud**: one blip per provider, plus "technique" blips such as "Infrastructure as code" if raised.

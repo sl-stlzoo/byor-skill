@@ -28,4 +28,8 @@ One self-contained `index.html` (about 40-100 KB). No external requests, fonts, 
 - CSV/JSON are embedded as data URIs and use the user's quadrant and ring names (self-hosted BYOR). For the hosted BYOR site use `state_to_radar.py --compat`.
 
 ## Customising
-Edit the `TEMPLATE` string and `RING_COPY` in `scripts/build_site.py`; change accent via `--accent` or `site.accent` in settings.
+Open **Theme** in the generated radar to preview the appearance, accent and four quadrant colours. **Download
+Branded HTML** saves those settings in a new self-contained page. **Download Theme Settings** saves a JSON
+object with `mode` (`system`, `light`, or `dark`), `accent`, and `q0`–`q3` (six-digit hex colours in radar
+quadrant order). Pass it to `scripts/build_site.py` with `--theme radar-theme.json` when building another edition.
+An explicit `--accent` overrides only the accent from that file.

@@ -6,6 +6,7 @@
 #   quadrant    default quadrant id (business-domains scheme)
 #   scope       one-sentence definition the agent reads to the user
 #   clarify     optional scope question to ask first when the term is ambiguous
+#   clarify_options optional answers for a closed scope question
 #   probes      domain-specific questions (asked after the generic inventory/pipeline/exit questions)
 #   seeds       ALPHABETICAL example products used ONLY as a recall menu AFTER the user lists their own.
 #               Seeds are not endorsements, may be stale or renamed, and must be verified (web) before
@@ -51,7 +52,7 @@ domains:
 - id: ticketing
   name: Ticketing
   quadrant: customers-members
-  scope: "Selling and scanning admissions or event tickets (box office, venues, attractions, programmes)."
+  scope: "Selling, issuing and scanning admissions or event tickets. Cover in-person checkout under Admissions POS."
   clarify: "Ticketing here means admissions/event tickets. If you meant internal work tickets (IT or support requests), we will cover those under ITSM Helpdesk instead. Which applies?"
   probes:
     - "How are tickets sold (online, on-site, partner channels) and scanned?"
@@ -149,11 +150,11 @@ domains:
   lens: [self-service scheduling, screening compliance, reporting for funders, CRM integration, usability for non-technical volunteers]
 
 - id: event-management
-  name: Event Management
+  name: Event Scheduling & Management
   quadrant: customers-members
-  scope: "Planning and running events: registration, agendas, speakers, venues, attendee engagement."
+  scope: "Scheduling and running events: venue calendars, room bookings, staffing, registration and check-in."
   probes:
-    - "In-person, virtual, hybrid? How many events per year and what size?"
+    - "How do you reserve rooms, coordinate staff and avoid scheduling conflicts?"
     - "How does registration data flow to CRM and finance?"
     - "What happens onsite: check-in, badges, mobile app?"
   seeds: [Bizzabo, Cvent, Eventbrite, Pretix (FOSS), Swoogo, Whova]
@@ -171,7 +172,7 @@ domains:
   lens: [data privacy, payroll accuracy, onboarding automation, access roles, regional compliance]
 
 - id: accounting
-  name: Accounting
+  name: Accounting General Ledger
   quadrant: business-ops
   scope: "General ledger, payables, receivables, reconciliation, reporting, fund or grant accounting."
   probes:
@@ -180,6 +181,118 @@ domains:
     - "Are there fund, grant, or multi-entity accounting needs?"
   seeds: [Akaunting (FOSS), Blackbaud Financial Edge NXT, GnuCash (FOSS), Microsoft Dynamics 365 Finance, Oracle NetSuite, QuickBooks, Sage Intacct, Xero, Zoho Books]
   lens: [audit readiness, close speed, multi-entity or fund support, bank feeds, integration with ERP/CRM]
+
+- id: budgeting
+  name: Budgeting Software
+  quadrant: business-ops
+  scope: "Budget creation, approvals, forecasts and budget versus actual reporting."
+  probes:
+    - "How do teams submit budgets and compare them with actual spending?"
+    - "Which forecasts or approvals still rely on spreadsheets?"
+  seeds: []
+  lens: [version control, approval flow, ledger integration]
+
+- id: fixed-assets
+  name: Fixed Asset Software
+  quadrant: business-ops
+  scope: "The asset register, capitalisation, depreciation and disposals."
+  probes:
+    - "How do you record additions, transfers, depreciation and disposals?"
+    - "How do you reconcile the asset register with the general ledger?"
+  seeds: []
+  lens: [register accuracy, audit history, ledger integration]
+
+- id: purchasing
+  name: Purchasing Software
+  quadrant: business-ops
+  scope: "Purchase requests, approvals, purchase orders and receiving."
+  probes:
+    - "How does a request become an approved purchase order?"
+    - "Can you match orders, receipts and invoices without rekeying?"
+  seeds: []
+  lens: [approval controls, receiving, invoice matching]
+
+- id: facility-work-orders
+  name: Facility & Maintenance Work Orders
+  quadrant: business-ops
+  scope: "Repair requests, preventive maintenance and work orders for buildings and equipment."
+  probes:
+    - "How do staff submit a repair request and see when it is done?"
+    - "How do teams schedule preventive maintenance and record work completed?"
+  seeds: []
+  lens: [scheduling, field access, work history]
+
+- id: cash-counting
+  name: Cash Counting Systems
+  quadrant: business-ops
+  scope: "Cash counts, till reconciliation and deposits, including sites that no longer accept cash."
+  clarify: "Do you accept cash, operate fully cashless, or vary by site? If fully cashless, record that and skip the system questions."
+  clarify_options: ["Accept cash", "Fully cashless", "Varies by site", "Not sure"]
+  probes:
+    - "Where you accept cash, what counts and reconciles tills and deposits?"
+    - "How are shortages, overages and mixed payment types handled?"
+  seeds: []
+  lens: [count accuracy, reconciliation, audit trail]
+
+- id: expense-tracking
+  name: Expense Tracking & Analysis
+  quadrant: business-ops
+  scope: "Staff expenses, receipts, reimbursements, card spending and spend analysis."
+  probes:
+    - "How do staff submit expenses and how are they approved and paid?"
+    - "How do you review spending by team or category and spot exceptions?"
+  seeds: []
+  lens: [receipt capture, policy controls, spend visibility]
+
+- id: business-intelligence
+  name: Business Intelligence
+  quadrant: business-ops
+  scope: "Reporting, dashboards and analysis across finance and operations."
+  probes:
+    - "Which tools build dashboards, and which systems feed them?"
+    - "Who checks that measures are accurate and shared with the right people?"
+  seeds: []
+  lens: [data quality, refresh reliability, access controls]
+
+- id: development-fundraising
+  name: Development & Fundraising Software
+  quadrant: customers-members
+  scope: "Donor records, donations, pledges, campaigns and stewardship."
+  probes:
+    - "How are gifts, pledges and acknowledgements recorded?"
+    - "How do donation records flow into finance without sharing donor details?"
+  seeds: []
+  lens: [donor privacy, gift processing, accounting integration]
+
+- id: admissions-pos
+  name: Admissions POS
+  quadrant: customers-members
+  scope: "In-person admissions checkout: tills, payments, refunds and daily close."
+  probes:
+    - "What system do staff use to sell admission at the gate?"
+    - "How do refunds, member benefits, offline sales and daily close work?"
+  seeds: []
+  lens: [checkout speed, offline continuity, reconciliation]
+
+- id: education-programmes
+  name: Education Classes & Programs Management
+  quadrant: customers-members
+  scope: "Class and programme scheduling, enrolment, waitlists and attendance."
+  probes:
+    - "How do people register for classes, camps or group visits?"
+    - "How do staff track capacity, waitlists and attendance?"
+  seeds: []
+  lens: [registration, accessibility, participant privacy]
+
+- id: document-management
+  name: Paperless & Document Management
+  quadrant: service-workplace
+  scope: "Scanning, filing, finding, approving and retaining official records."
+  probes:
+    - "Which records are digital and which still depend on paper?"
+    - "How do staff find the current version and apply retention rules?"
+  seeds: []
+  lens: [search, retention, version history]
 
 - id: wealth-screening
   name: Wealth Screening

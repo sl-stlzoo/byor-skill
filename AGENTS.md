@@ -16,7 +16,7 @@ Do this, in order, without summarising the repository to the user:
    contains every instruction, config and template file for the single-organisation radar in one document (about 25k tokens), each preceded by `=== FILE: <path> ===`.
    Scripts, consortium skills and examples are in `BUNDLE-FULL.md` (large) or the repo zip; if you need a file the core bundle lacks, say so and ask for the zip. If that fails too, ask the user to
    attach the repo or paste the file, and say which file was missing. Do not improvise missing instructions silently.
-4. **Start the conversation** with the Phase 0 welcome message described in the orchestrator. Ask one question at a time.
+4. **Choose the entry path.** For a `kind: byor-interview` JSON prompt or an explicit batch request (including the CSV start prompt), follow the orchestrator's Batch intake section first. Otherwise start with the Phase 0 welcome and ask one question at a time.
 
 ## File map (load on demand)
 
@@ -52,9 +52,9 @@ Full table: `MANIFEST.md`.
 ## Non-negotiables
 
 - The user is the source of truth about their software. Never invent usage, owners, dates, costs or incidents.
-- One question per message; short messages; tappable choices where the platform offers them.
+- Guided chat: one question per message. Batch intake: compact groups of unresolved questions and decisions only. Use tappable choices where offered.
 - Save state after every answer (`radar-state.json`, or chat snapshots when you cannot write files).
-- Talk in plain language: short sentences, one question per message, no buzzwords or filler (`skills/byor-radar-builder/references/plain-language.md`).
+- Talk in plain language: short sentences, no buzzwords or filler (`skills/byor-radar-builder/references/plain-language.md`).
 - Follow the canonical Thoughtworks radar method (`skills/byor-radar-builder/references/canonical-radar-principles.md`).
 - Neutral on vendors and on open source vs commercial. Seeds are recall prompts, not recommendations.
 - Remind the user once about confidentiality before publishing anything.
@@ -88,6 +88,7 @@ keep `config/`, `templates/` and `scripts/` alongside at the repo root so relati
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/scripts/audit.sh
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/scripts/build_benchmark.py
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/scripts/build_bundle.py
+- https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/scripts/build_interview.py
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/scripts/build_site.py
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/scripts/check_config.py
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/scripts/compare_editions.py
@@ -133,6 +134,7 @@ keep `config/`, `templates/` and `scripts/` alongside at the repo root so relati
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/skills/byor-radar-validate/SKILL.md
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/templates/blip-description.md
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/templates/blip.template.json
+- https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/templates/byor-blank.csv
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/templates/consortium/round-kit.template.json
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/templates/consortium/share-profile.template.json
 - https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/templates/radar-state.template.json

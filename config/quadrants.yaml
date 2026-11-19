@@ -3,7 +3,7 @@
 schema_version: 1
 schemes:
 
-  business-domains:           # DEFAULT. Designed for the 25 starter software domains.
+  business-domains:           # DEFAULT. Designed for the starter software domains.
     description: "Organises business software by who it serves and what job it does."
     quadrants:
       - id: business-ops
@@ -33,7 +33,7 @@ schemes:
 
 # Default mapping of starter domains -> quadrant ids of the business-domains scheme.
 default_domain_mapping:
-  business-ops:       [erp, accounting, hris, retail, food-and-beverage, parking]
-  customers-members:  [crm, membership, ticketing, e-commerce, marketing-communication, event-management, volunteer-services, wealth-screening]
-  service-workplace:  [itsm-helpdesk, call-center, telephony, business-productivity, intranet, digital-signage]
+  business-ops:       [erp, accounting, budgeting, fixed-assets, purchasing, facility-work-orders, cash-counting, expense-tracking, business-intelligence, hris, retail, food-and-beverage, parking]
+  customers-members:  [crm, membership, ticketing, admissions-pos, e-commerce, marketing-communication, event-management, education-programmes, development-fundraising, volunteer-services, wealth-screening]
+  service-workplace:  [itsm-helpdesk, call-center, telephony, business-productivity, document-management, intranet, digital-signage]
   security-infra:     [access-control, endpoint-security, public-cloud, gis, ai-tools]

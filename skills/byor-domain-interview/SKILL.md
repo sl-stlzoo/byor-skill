@@ -16,6 +16,7 @@ Interview the user about one domain at a time. Output: a **candidate list** with
 ## Conversation contract (follow in order; stop early if the user is brief)
 
 **Step A: Frame (1 message).** Read `scope` in one sentence, then ask the `clarify` question if the domain has one.
+Use `clarify_options` when provided. If cash counting is fully cashless, record that as the skip reason and move on.
 Offer: Let's go / Skip this area / Not applicable. If skipped, set `status: skipped` with a reason and return.
 
 **Step B: Inventory (open question).**

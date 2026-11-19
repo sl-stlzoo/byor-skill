@@ -13,7 +13,7 @@ Site structure and customisation: `references/site-spec.md`.
 ## Preconditions
 Phase 6 (calibration) done; blips saved in state. If fewer than 8 blips, warn that themes will be thin.
 
-## Narrative workshop (one question per message)
+## Narrative workshop (one question per message in guided chat)
 
 1. **Edition and tagline.** Offer 3 tagline options in the canonical spirit ("An opinionated guide to ...") built from
    `meta.purpose`; the user picks or edits. Edition label (default `Edition 1`) and publication month.
@@ -32,7 +32,7 @@ Phase 6 (calibration) done; blips saved in state. If fewer than 8 blips, warn th
    Save `state.actions[]`.
 5. **People and process.** Contributors (names or roles, as the user wishes; offer "team only"), how colleagues can nominate
    a tool, cadence and next review. Save `meta.contributors`, `meta.how_to_nominate`, `meta.cadence`, `meta.next_review`.
-6. **Look and privacy.** Accent colour (offer 3-4 named swatches), and whether the page may be indexed by search engines
+6. **Look and privacy.** Use the default red and neutral theme unless the user asks for other colours, and ask whether the page may be indexed by search engines
    (default no) and whether contributors' names may appear publicly.
 7. **Confirm** in one compact recap (title, tagline, themes list, action count) before building.
 
@@ -40,6 +40,7 @@ Phase 6 (calibration) done; blips saved in state. If fewer than 8 blips, warn th
 ```
 python scripts/build_site.py radar-state.json                      # -> radar-output/index.html
 python scripts/build_site.py radar-state.json --accent "#1d4ed8"   # custom accent
+python scripts/build_site.py radar-state.json --theme radar-theme.json  # reuse saved branding
 python scripts/build_site.py radar-state.json --public             # allow search indexing (only if user chose)
 ```
 Read the printed WARNINGS (missing themes, unknown `[[links]]`, no contributors) and fix them with the user.
@@ -50,6 +51,8 @@ self-contained HTML file, or offer the CSV plus the themes as Markdown.
 Present `radar-output/index.html` (and `radar.csv`, `radar.json`, `radar-summary.md`). Tell the user in three lines: how to open
 it (double-click), how to host it (any static host, see `byor-radar-publish`), and that it contains the whole radar
 so access control matters.
+The generated page's **Theme** link opens an offline editor. The user can preview colours, download a branded
+HTML copy, or save settings for the next edition.
 
 ## Quality bar (check before presenting)
 - Intro says opinion, not survey, not approved list.

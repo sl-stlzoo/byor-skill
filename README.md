@@ -6,11 +6,13 @@ contributing to a **consortium benchmark** with peer organisations. Everything r
 
 | You are | You get |
 |---|---|
-| **An organisation building its radar** | A guided interview over a configurable list of 25 software domains; `radar.csv` / `radar.json` for BYOR; a polished **single-page static website** laid out like the canonical Thoughtworks radar (interactive radar, ring guide, themes, every blip, actions, FAQ) |
+| **An organisation building its radar** | A guided or batch interview over a configurable list of software domains; `radar.csv` / `radar.json` for BYOR; a **single-page static website** with an interactive radar, ring guide, themes, blips, actions and FAQ |
 | **A consortium member** | A share-safe `contribution.json` (tools, rings, evidence buckets; never descriptions, owners or incidents), named by default or anonymous, with a preview and consent step |
 | **A consortium convener** | Intake and privacy-preserving aggregation (minimum 3 organisations), a **benchmark website** for everyone and a private **"you vs the round" report** for each member |
 
-Starter domains (edit `config/domains.yaml`): ERP, business productivity, access control, ticketing, membership, CRM, retail, e-commerce, food and beverage, ITSM helpdesk, call center, volunteer services, event management, HRIS, accounting, wealth screening, endpoint security, public cloud, parking, digital signage, GIS, marketing communication, intranet, telephony, AI tools.
+Both interview paths include [36 starter software areas](config/domains.yaml), from accounting and purchasing to
+admissions, fundraising, education, facilities, HR, retail, and food and beverage. The cash-counting section
+lets you record that you operate fully cashless or that payment practices vary by site.
 
 ## Start here
 | Goal | Read |
@@ -24,6 +26,13 @@ Starter domains (edit `config/domains.yaml`): ERP, business productivity, access
 | Change over time: editions (built), round trends (built), panel analysis (planned) | [docs/ROADMAP-TIME.md](docs/ROADMAP-TIME.md) |
 
 ## Use it: one prompt
+**Prefer to answer in one sitting?** Open the [project site](https://sl-stlzoo.github.io/byor-skill/) and
+choose **Batch Interview**. Fill in the worksheet or import the [blank CSV template](templates/byor-blank.csv)
+after completing it. Copy the JSON prompt into a new chat, or attach your completed spreadsheet with the
+[batch start prompt](BOOTSTRAP_PROMPT.md#byor-interview-batch-start). The worksheet does not upload data or
+save drafts. Interview notes go into the JSON; the CSV export includes only the five Thoughtworks blip fields.
+
+**Prefer a conversation?**
 Paste into any capable AI assistant (the repo owner and name are filled in by `scripts/set_owner.py`; shown here as placeholders):
 ```
 Use https://github.com/sl-stlzoo/byor-skill to guide me, one question at a time, through building my own
@@ -59,12 +68,13 @@ git push; enable Pages (main, /root); python scripts/verify_deploy.py           
 ```
 Rename later by re-running `set_owner.py`; the single source of truth is `project.json`. Pin a reviewed commit SHA for production use.
 
-## Scripts (standard library only; `check_config.py` optionally uses PyYAML)
+## Scripts (standard library for radar generation; rebuilding the browser question bank requires PyYAML)
 ```
 # Radar
 python scripts/state_to_radar.py radar-state.json [--compat] [--full] [--hold-label Hold] [--print-env]
 python scripts/validate_radar.py radar-output/radar.csv [--state radar-state.json] [--hosted] [--json]
-python scripts/build_site.py radar-state.json [--accent "#0f766e"] [--public]      # -> radar-output/index.html
+python scripts/build_site.py radar-state.json [--theme radar-theme.json] [--public] # -> radar-output/index.html
+python scripts/build_interview.py                                                  # regenerate the public question bank
 python scripts/radar_stats.py radar-state.json
 python scripts/freeze_edition.py radar-state.json                                  # save this edition, mark what changed (keeps newest 4)
 python scripts/compare_editions.py radar-state.json                                # what changed since the last edition
@@ -86,6 +96,15 @@ python scripts/set_owner.py ...  |  python scripts/build_bundle.py  |  python sc
 Agents without code execution fall back to chat snapshots and manual checklists (the consortium steps and the site need the scripts).
 
 ## Customise
+In a generated radar, open **Theme** to preview an accent, four quadrant colours and a light or dark
+appearance. Download the branded HTML to keep or share, or download `radar-theme.json` and pass it to
+`build_site.py --theme` to reuse your branding next edition. The default red and neutral design is inspired
+by [AZA Technology](https://aza-technology.github.io/); the sites do not load its assets.
+
+After editing the starter domain, ring or quadrant configuration, run `python scripts/build_interview.py` and
+commit the regenerated question bank with your config changes. The public worksheet uses `config/` only, not
+`config.local/`. To test the page locally, run `python -m http.server 8000 --bind 127.0.0.1` from the repo root
+and open `http://127.0.0.1:8000/interview.html`.
 - **Domains:** `config/domains.yaml` (id, name, quadrant, scope, probes, seeds, lens), or tell the agent "add a domain called fleet management".
 - **Quadrants and rings:** `config/quadrants.yaml` (BYOR draws exactly 4 quadrants), `config/rings.yaml`; Phase 4 tailors rings per radar.
 - **Depth, limits, evidence mode, site settings:** `config/settings.yaml`.
