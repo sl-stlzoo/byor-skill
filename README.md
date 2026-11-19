@@ -27,7 +27,7 @@ lets you record that you operate fully cashless or that payment practices vary b
 
 ## Use it: one prompt
 **Prefer to answer in one sitting?** Open the [project site](https://sl-stlzoo.github.io/byor-skill/) and
-choose **Batch Interview**. Fill in the worksheet or import the [blank CSV template](templates/byor-blank.csv)
+choose **Batch Interview**. Fill in the worksheet or import the [starter CSV template](templates/byor-blank.csv)
 after completing it. Copy the JSON prompt into a new chat, or attach your completed spreadsheet with the
 [batch start prompt](BOOTSTRAP_PROMPT.md#byor-interview-batch-start). The worksheet does not upload data or
 save drafts. Interview notes go into the JSON; the CSV export includes only the five Thoughtworks blip fields.
@@ -74,7 +74,7 @@ Rename later by re-running `set_owner.py`; the single source of truth is `projec
 python scripts/state_to_radar.py radar-state.json [--compat] [--full] [--hold-label Hold] [--print-env]
 python scripts/validate_radar.py radar-output/radar.csv [--state radar-state.json] [--hosted] [--json]
 python scripts/build_site.py radar-state.json [--theme radar-theme.json] [--public] # -> radar-output/index.html
-python scripts/build_interview.py                                                  # regenerate the public question bank
+python scripts/build_interview.py                                                  # regenerate the question bank and starter CSV
 python scripts/radar_stats.py radar-state.json
 python scripts/freeze_edition.py radar-state.json                                  # save this edition, mark what changed (keeps newest 4)
 python scripts/compare_editions.py radar-state.json                                # what changed since the last edition
@@ -102,7 +102,7 @@ appearance. Download the branded HTML to keep or share, or download `radar-theme
 by [AZA Technology](https://aza-technology.github.io/); the sites do not load its assets.
 
 After editing the starter domain, ring or quadrant configuration, run `python scripts/build_interview.py` and
-commit the regenerated question bank with your config changes. The public worksheet uses `config/` only, not
+commit the regenerated question bank and starter CSV with your config changes. The public worksheet uses `config/` only, not
 `config.local/`. To test the page locally, run `python -m http.server 8000 --bind 127.0.0.1` from the repo root
 and open `http://127.0.0.1:8000/interview.html`.
 - **Domains:** `config/domains.yaml` (id, name, quadrant, scope, probes, seeds, lens), or tell the agent "add a domain called fleet management".

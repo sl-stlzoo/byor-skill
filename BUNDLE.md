@@ -224,11 +224,11 @@ start from an attached Thoughtworks CSV, use batch mode instead of restarting th
    and confirm scope and grouping. Blank is unanswered, not skipped. Fully cashless means skip `cash-counting`
    without a blip. Business groups are proposed mappings, not Thoughtworks categories.
 3. Use each domain's `clarify`, `inventory`, `pipeline`, `exits`, `notes` and answered `probes` as evidence in
-   Phase 5. `answers.blips` holds optional user-proposed blips with `name`, `ring`, `quadrant`, boolean `isNew`,
-   `description`, `domain` (domain ID) and `next_action`; fields may be absent. Match by tool name and reconcile
-   overlaps before creating state records. For CSV-only intake, read `name,ring,quadrant,isNew,description`
-   as proposed blips with no context or domain answers. Use its four Thoughtworks categories as a suggested
-   scheme; ask only for missing information, mappings and facts needed for the rubric. Never invent them.
+   Phase 5. `answers.blips` holds optional user-proposed blips, including state-schema fields and `next_action`;
+   fields may be absent. Match by name and reconcile overlaps. For CSV intake, ignore `row_type=EXAMPLE` and
+   empty `AREA` rows. Map the remaining columns to blip fields; `domain` and `also_in` use area IDs, and
+   semicolons separate `also_in` and `evidence` values. Record `next_action` for later action review. Confirm
+   any needed quadrant mapping, and ask only for missing facts. Never invent them.
 4. Present what you can use and one compact group of remaining questions or decisions at a time. Offer scope
    sign-off and ring calibration in compact groups, including Caution. Confirm proposed ring decisions with
    evidence and next actions; do not ask for facts already provided. Save accepted answers to state after each
@@ -2058,7 +2058,44 @@ names of individuals or anything the user marked confidential; no <script>. Allo
 
 === FILE: templates/byor-blank.csv ===
 
-name,ring,quadrant,isNew,description
+row_type,domain,domain_name,name,ring,quadrant,isNew,status,description,owner,confidence,evidence,last_reviewed,next_review,decision_notes,tool_id,previous_ring,ring_reason,radial,champion,also_in,next_action
+EXAMPLE,accounting,Accounting General Ledger,EXAMPLE - Sample Ledger,Trial,Tools,FALSE,Moved In,EXAMPLE ONLY: A fictional ledger is being tested on real work. The team will review its fit before deciding whether to expand use.,Finance lead (example role),medium,user-stated,2026-01-15,2026-07-15,Example pilot; confirm the ring.,x-example-sample-ledger,Assess,Example pilot began.,0.5,Finance team (example role),budgeting,Review the example pilot.
+AREA,erp,ERP,,,,,,,,,,,,,,,,,,,
+AREA,business-productivity,Business Productivity,,,,,,,,,,,,,,,,,,,
+AREA,access-control,Access Control,,,,,,,,,,,,,,,,,,,
+AREA,ticketing,Ticketing,,,,,,,,,,,,,,,,,,,
+AREA,membership,Membership,,,,,,,,,,,,,,,,,,,
+AREA,crm,CRM,,,,,,,,,,,,,,,,,,,
+AREA,retail,Retail,,,,,,,,,,,,,,,,,,,
+AREA,e-commerce,E-commerce,,,,,,,,,,,,,,,,,,,
+AREA,food-and-beverage,Food & Beverage,,,,,,,,,,,,,,,,,,,
+AREA,itsm-helpdesk,ITSM Helpdesk,,,,,,,,,,,,,,,,,,,
+AREA,call-center,Call Center,,,,,,,,,,,,,,,,,,,
+AREA,volunteer-services,Volunteer Services,,,,,,,,,,,,,,,,,,,
+AREA,event-management,Event Scheduling & Management,,,,,,,,,,,,,,,,,,,
+AREA,hris,HRIS,,,,,,,,,,,,,,,,,,,
+AREA,accounting,Accounting General Ledger,,,,,,,,,,,,,,,,,,,
+AREA,budgeting,Budgeting Software,,,,,,,,,,,,,,,,,,,
+AREA,fixed-assets,Fixed Asset Software,,,,,,,,,,,,,,,,,,,
+AREA,purchasing,Purchasing Software,,,,,,,,,,,,,,,,,,,
+AREA,facility-work-orders,Facility & Maintenance Work Orders,,,,,,,,,,,,,,,,,,,
+AREA,cash-counting,Cash Counting Systems,,,,,,,,,,,,,,,,,,,
+AREA,expense-tracking,Expense Tracking & Analysis,,,,,,,,,,,,,,,,,,,
+AREA,business-intelligence,Business Intelligence,,,,,,,,,,,,,,,,,,,
+AREA,development-fundraising,Development & Fundraising Software,,,,,,,,,,,,,,,,,,,
+AREA,admissions-pos,Admissions POS,,,,,,,,,,,,,,,,,,,
+AREA,education-programmes,Education Classes & Programs Management,,,,,,,,,,,,,,,,,,,
+AREA,document-management,Paperless & Document Management,,,,,,,,,,,,,,,,,,,
+AREA,wealth-screening,Wealth Screening,,,,,,,,,,,,,,,,,,,
+AREA,endpoint-security,Endpoint Security,,,,,,,,,,,,,,,,,,,
+AREA,public-cloud,Public Cloud,,,,,,,,,,,,,,,,,,,
+AREA,parking,Parking,,,,,,,,,,,,,,,,,,,
+AREA,digital-signage,Digital Signage,,,,,,,,,,,,,,,,,,,
+AREA,gis,GIS,,,,,,,,,,,,,,,,,,,
+AREA,marketing-communication,Marketing Communication,,,,,,,,,,,,,,,,,,,
+AREA,intranet,Intranet,,,,,,,,,,,,,,,,,,,
+AREA,telephony,Telephony,,,,,,,,,,,,,,,,,,,
+AREA,ai-tools,AI Tools,,,,,,,,,,,,,,,,,,,
 
 
 === FILE: templates/radar-state.template.json ===

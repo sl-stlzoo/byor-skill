@@ -4,9 +4,12 @@
   const { instructions, domains, groups, rings, quadrants } = interviewQuestions;
   const $ = id => document.getElementById(id);
   const header = ["name", "ring", "quadrant", "isNew", "description"];
+  const extraFields = ["status", "owner", "confidence", "evidence", "last_reviewed", "next_review",
+    "decision_notes", "tool_id", "previous_ring", "ring_reason", "radial", "champion", "also_in", "next_action"];
+  const templateFields = ["row_type", "domain", "domain_name", ...header, ...extraFields];
   const yesNo = [["", "Choose…"], ["true", "Yes"], ["false", "No"]];
   const ringChoices = [["", "Not decided"], ...rings.map(r => [r.name, r.name])];
-  const quadrantChoices = [["", "Not decided"], ...quadrants.map(q => [q, q])];
+  const quadrantChoices = [["", "Not decided"], ...quadrants.map(q => [q, q]), ...groups.map(q => [q.name, q.name])];
   const areaEditors = [];
   const blipEditors = [];
   let customCount = 0;
@@ -161,15 +164,31 @@
     const container = element("fieldset", "", { className: "blip-editor" });
     const legend = element("legend", "Blip");
     const grid = element("div", "", { className: "fields" });
+    const advanced = element("details");
+    const advancedGrid = element("div", "", { className: "fields" });
     const entry = (key, label, opts) => field(grid, `blip-${index}-${key}`, label, { ...opts, value: values[key] || "" });
+    const extra = (key, label, opts) => field(advancedGrid, `blip-${index}-${key}`, label, { ...opts, value: values[key] || "" });
     const controls = {
       name: entry("name", "Tool or Practice Name"),
       ring: entry("ring", "Ring", { choices: ringChoices }),
       quadrant: entry("quadrant", "Thoughtworks Quadrant", { choices: quadrantChoices }),
       isNew: entry("isNew", "New to This Edition?", { choices: yesNo }),
       description: entry("description", "Why This Ring? What Is the Evidence?", { type: "notes" }),
-      domain: entry("domain", "Software Area", { choices: [["", "Not assigned"]] }),
+      domain: entry("domain", "Software Area", { choices: [["", "Not assigned"], ...areaEditors.map(a => [a.id, a.name.value.trim() || a.original])] }),
       next_action: entry("next_action", "What Is the Next Action?", { type: "notes" }),
+      status: extra("status", "Change Status", { choices: [["", "Not set"], ...["New", "Moved In", "Moved Out", "No Change"].map(v => [v, v])] }),
+      owner: extra("owner", "Accountable Role"),
+      confidence: extra("confidence", "Confidence", { choices: [["", "Not set"], ...["low", "medium", "high"].map(v => [v, v])] }),
+      evidence: extra("evidence", "Evidence", { type: "notes", hint: "Separate items with semicolons. Do not include sensitive information." }),
+      last_reviewed: extra("last_reviewed", "Last Reviewed (YYYY-MM-DD)"),
+      next_review: extra("next_review", "Next Review (YYYY-MM-DD)"),
+      decision_notes: extra("decision_notes", "Decision Notes", { type: "notes" }),
+      tool_id: extra("tool_id", "Tool Registry ID"),
+      previous_ring: extra("previous_ring", "Previous Ring", { choices: ringChoices }),
+      ring_reason: extra("ring_reason", "Reason for Ring Change", { type: "notes" }),
+      radial: extra("radial", "Position Within Ring (0–1)"),
+      champion: extra("champion", "Description Champion (Role)"),
+      also_in: extra("also_in", "Other Area IDs", { hint: "Separate area IDs with semicolons." }),
     };
     const editor = { container, controls };
     const remove = element("button", "Remove Blip", { type: "button", className: "alt" });
@@ -193,7 +212,9 @@
     });
     const row = element("div", "", { className: "row" });
     row.append(remove);
-    container.append(legend, grid, status, row);
+    advanced.append(element("summary", "Additional Radar Details"), advancedGrid);
+    advanced.open = extraFields.some(key => key !== "next_action" && values[key]);
+    container.append(legend, grid, advanced, status, row);
     $("blip-list").append(container);
     blipEditors.push(editor);
     return controls.name;
@@ -223,18 +244,31 @@
     if (state === "quoted") throw new Error(`Close the quoted field in CSV record ${records.length + 1}.`);
     if (row.length || state !== "start") endRow();
     const columns = records.shift() || [];
-    if (columns.length !== header.length || !header.every(key => columns.includes(key))) {
-      throw new Error("Use the five exact column names from the blank template.");
+    if (!header.every(key => columns.includes(key)) || new Set(columns).size !== columns.length ||
+        columns.some(key => !templateFields.includes(key))) {
+      throw new Error("Use the column names from the starter template or a five-column Thoughtworks CSV.");
     }
     return records.flatMap((cells, i) => {
       if (cells.every(v => !v.trim())) return [];
-      if (cells.length !== columns.length) throw new Error(`CSV record ${i + 2} needs five fields. Put quotes around text containing commas.`);
+      if (cells.length !== columns.length) throw new Error(`CSV record ${i + 2} has the wrong number of fields. Put quotes around text containing commas.`);
       const blip = Object.fromEntries(columns.map((key, j) => [key, cells[j].trim()]));
-      for (const [key, choices] of [["ring", rings.map(r => r.name)], ["quadrant", quadrants], ["isNew", ["true", "false"]]]) {
-        const found = choices.find(candidate => candidate.toLowerCase() === blip[key].toLowerCase());
+      const rowType = (blip.row_type || "").toUpperCase();
+      if (rowType === "EXAMPLE") return [];
+      if (rowType && rowType !== "AREA" && rowType !== "BLIP") throw new Error(`CSV record ${i + 2}: row_type must be AREA, BLIP, or EXAMPLE.`);
+      if (!blip.name && rowType === "AREA" && ![...header.filter(k => k !== "name"), ...extraFields].some(k => blip[k])) return [];
+      if (!blip.name) throw new Error(`CSV record ${i + 2} needs a tool name. Leave unused area rows empty.`);
+      if (blip.domain && !areaEditors.some(a => a.id === blip.domain)) throw new Error(`CSV record ${i + 2} has unknown area ID "${blip.domain}". Add the area in the form first.`);
+      for (const [key, choices] of [
+        ["ring", rings.map(r => r.name)], ["previous_ring", rings.map(r => r.name)],
+        ["quadrant", [...quadrants, ...groups.map(g => g.name)]], ["isNew", ["true", "false"]],
+        ["status", ["New", "Moved In", "Moved Out", "No Change"]], ["confidence", ["low", "medium", "high"]]
+      ]) {
+        const found = choices.find(candidate => candidate.toLowerCase() === (blip[key] || "").toLowerCase());
         if (blip[key] && !found) throw new Error(`CSV record ${i + 2} has an unrecognised ${key}. Check the template instructions.`);
-        blip[key] = found || "";
+        if (key in blip) blip[key] = found || "";
       }
+      if (blip.radial && (!Number.isFinite(Number(blip.radial)) || Number(blip.radial) < 0 || Number(blip.radial) > 1))
+        throw new Error(`CSV record ${i + 2}: radial must be a number from 0 to 1.`);
       return [blip];
     });
   }
@@ -257,7 +291,7 @@
       entries.forEach(addBlip);
       updateAreaChoices();
       if (entries.length) markDirty();
-      status.textContent = entries.length ? `Added ${entries.length} ${entries.length === 1 ? "blip" : "blips"} to the editor below.` : "No blip rows found. Add rows below the header and try again.";
+      status.textContent = entries.length ? `Added ${entries.length} ${entries.length === 1 ? "blip" : "blips"} to the editor below. Example and empty area rows were skipped.` : "No completed blip rows found. Example and empty area rows were skipped.";
     } catch (error) {
       status.classList.add("error");
       status.textContent = error.message;
@@ -269,11 +303,23 @@
     $("export-status").textContent = message;
   }
   $("copy-prompt").onclick = async () => {
+    for (const { controls, status } of blipEditors) {
+      const value = controls.radial.value.trim();
+      if (value && (!Number.isFinite(Number(value)) || Number(value) < 0 || Number(value) > 1)) {
+        status.textContent = "Position within the ring must be a number from 0 to 1.";
+        controls.radial.closest("details").open = true;
+        controls.radial.focus();
+        report(status.textContent, true);
+        return;
+      }
+    }
     const answers = {
       context: read(context), ring_criteria: read(criteria), narrative: read(story),
       domains: areaEditors.map(areaAnswer),
       blips: blipEditors.map(b => read(b.controls)).filter(b => Object.keys(b).length)
-        .map(b => ({ ...b, ...(b.isNew ? { isNew: b.isNew === "true" } : {}) }))
+        .map(b => ({ ...b, ...(b.isNew ? { isNew: b.isNew === "true" } : {}),
+          ...(b.radial ? { radial: Number(b.radial) } : {}),
+          ...Object.fromEntries(["evidence", "also_in"].filter(k => b[k]).map(k => [k, b[k].split(";").map(v => v.trim()).filter(Boolean)])) }))
     };
     const prompt = JSON.stringify({
       kind: "byor-interview", schema_version: 1, instructions_url: instructions,

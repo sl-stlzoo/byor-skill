@@ -5,7 +5,12 @@ Replace `sl-stlzoo` with the GitHub account or organisation that hosts this repo
 ## BYOR interview batch start
 
 For the [batch worksheet](interview.html), paste its copied JSON as your first message. For a spreadsheet,
-complete the [blank CSV](templates/byor-blank.csv), attach it to a new chat, and use this prompt:
+complete the [starter CSV](templates/byor-blank.csv), attach it to a new chat, and use this prompt.
+Keep the headers; add a tool name and facts to applicable area rows, copy rows for multiple tools, and leave
+unused rows blank. The `EXAMPLE` row is fictional and ignored: delete it or change `row_type` to `BLIP` and
+replace its example values. The extra columns carry per-blip details for the assistant, not a finished hosted
+Thoughtworks CSV. Separate `evidence` and `also_in` values with semicolons; `domain` and `also_in` use area IDs.
+Fill in organisation-wide context and the narrative in the worksheet or discuss them with the assistant.
 
 ```
 Read https://raw.githubusercontent.com/sl-stlzoo/byor-skill/main/AGENTS.md and use the BYOR interview in batch mode.

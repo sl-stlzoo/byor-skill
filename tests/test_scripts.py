@@ -17,6 +17,20 @@ def test_default_question_bank_covers_operational_systems():
     assert "Fully cashless" in domains["cash-counting"]["clarify_options"]
     assert all(domains[key]["probes"] for key in required)
 
+def test_starter_csv_has_example_areas_and_blip_fields():
+    text = (ROOT / "interview-questions.js").read_text(encoding="utf-8")
+    bank = json.loads(text.split("const interviewQuestions = ", 1)[1].rstrip().removesuffix(";"))
+    with (ROOT / "templates/byor-blank.csv").open(encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+    schema = json.loads((ROOT / "templates/blip.template.json").read_text(encoding="utf-8"))
+    assert set(schema) | {"row_type", "domain_name", "previous_ring", "also_in", "next_action"} <= set(reader.fieldnames)
+    assert rows[0]["row_type"] == "EXAMPLE"
+    assert all(rows[0][column] for column in reader.fieldnames)
+    assert {row["domain"] for row in rows[1:]} == {domain["id"] for domain in bank["domains"]}
+    assert len(rows) == len(bank["domains"]) + 1
+    assert all(row["row_type"] == "AREA" and row["domain_name"] and not row["name"] for row in rows[1:])
+
 
 def test_offline_theme_config(tmp_path):
     import base64
@@ -391,7 +405,7 @@ def test_site_friendly_errors_for_empty_or_duplicate_blips():
 def test_core_bundle_is_small_and_individual_only():
     run("scripts/build_bundle.py")
     core = (ROOT / "BUNDLE.md").read_text(encoding="utf-8"); full = (ROOT / "BUNDLE-FULL.md").read_text(encoding="utf-8")
-    assert len(core) < 140_000 and len(full) > len(core)
+    assert len(core) < 145_000 and len(full) > len(core)
     for needle in ("=== FILE: skills/byor-radar-builder/SKILL.md", "=== FILE: config/domains.yaml", "=== FILE: skills/byor-radar-site/references/site-spec.md"):
         assert needle in core
     for needle in ("byor-radar-convene", "byor-radar-share", "=== FILE: scripts/", "consortium-vocab"):

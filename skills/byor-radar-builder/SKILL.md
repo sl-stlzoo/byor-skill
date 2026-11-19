@@ -70,11 +70,11 @@ start from an attached Thoughtworks CSV, use batch mode instead of restarting th
    and confirm scope and grouping. Blank is unanswered, not skipped. Fully cashless means skip `cash-counting`
    without a blip. Business groups are proposed mappings, not Thoughtworks categories.
 3. Use each domain's `clarify`, `inventory`, `pipeline`, `exits`, `notes` and answered `probes` as evidence in
-   Phase 5. `answers.blips` holds optional user-proposed blips with `name`, `ring`, `quadrant`, boolean `isNew`,
-   `description`, `domain` (domain ID) and `next_action`; fields may be absent. Match by tool name and reconcile
-   overlaps before creating state records. For CSV-only intake, read `name,ring,quadrant,isNew,description`
-   as proposed blips with no context or domain answers. Use its four Thoughtworks categories as a suggested
-   scheme; ask only for missing information, mappings and facts needed for the rubric. Never invent them.
+   Phase 5. `answers.blips` holds optional user-proposed blips, including state-schema fields and `next_action`;
+   fields may be absent. Match by name and reconcile overlaps. For CSV intake, ignore `row_type=EXAMPLE` and
+   empty `AREA` rows. Map the remaining columns to blip fields; `domain` and `also_in` use area IDs, and
+   semicolons separate `also_in` and `evidence` values. Record `next_action` for later action review. Confirm
+   any needed quadrant mapping, and ask only for missing facts. Never invent them.
 4. Present what you can use and one compact group of remaining questions or decisions at a time. Offer scope
    sign-off and ring calibration in compact groups, including Caution. Confirm proposed ring decisions with
    evidence and next actions; do not ask for facts already provided. Save accepted answers to state after each

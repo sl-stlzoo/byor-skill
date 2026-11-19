@@ -30,10 +30,12 @@
   <section class="box" aria-labelledby="csv-heading">
     <h2 id="csv-heading">Start With a Spreadsheet, If You Prefer</h2>
     <ol>
-      <li><a href="templates/byor-blank.csv" download>Download the blank Thoughtworks CSV template</a>.</li>
-      <li>Keep the headers and add one row per tool or practice. Use <strong>Adopt, Trial, Assess, Caution</strong>; <strong>Techniques, Platforms, Tools, Languages &amp; Frameworks</strong>; and <strong>TRUE</strong> or <strong>FALSE</strong> for <code>isNew</code>. Save as UTF-8 CSV.</li>
+      <li><a href="templates/byor-blank.csv" download>Download the radar starter CSV</a>. It contains one fictional example and one empty row for each suggested software area.</li>
+      <li>Keep the headers. Add your tool name and what you know to each applicable area row; leave unused rows empty. Duplicate an area row for more tools. The row marked <code>EXAMPLE</code> is ignored; delete it or change its <code>row_type</code> to <code>BLIP</code> and replace every example value to use it.</li>
+      <li>Use <strong>Adopt, Trial, Assess, Caution</strong> for rings and <strong>TRUE</strong> or <strong>FALSE</strong> for <code>isNew</code>. Separate multiple <code>evidence</code> or <code>also_in</code> values with semicolons. Use area IDs for <code>domain</code> and <code>also_in</code>, dates in YYYY-MM-DD, and a number from 0 to 1 for <code>radial</code>. Save as UTF-8 CSV.</li>
       <li>Import it below to add editable blips, or attach it to a new AI chat with the <a href="BOOTSTRAP_PROMPT.md#byor-interview-batch-start">BYOR interview start prompt</a>.</li>
     </ol>
+    <p class="note">The starter CSV carries radar blip details, not the organisation-wide context or narrative questions below. For the hosted Thoughtworks radar, choose its four quadrants: Techniques, Platforms, Tools, or Languages &amp; Frameworks. The final Thoughtworks CSV download contains only its five standard fields.</p>
     <label for="import-csv">Import a CSV From Your Device</label>
     <input id="import-csv" name="import-csv" type="file" accept=".csv,text/csv" autocomplete="off" disabled>
     <p id="import-status" role="status" class="note"></p>
@@ -59,7 +61,7 @@
     </section>
     <section class="box" id="blips" aria-labelledby="blips-heading">
       <h2 id="blips-heading">3. Add Individual Blips</h2>
-      <p class="note">Optional for the AI handoff: your assistant can draft blips from your answers above. For CSV, fill in all five Thoughtworks fields for each blip. Area and next action are for the assistant only.</p>
+      <p class="note">Optional for the AI handoff: your assistant can draft blips from your answers above. Extra fields are included in the JSON prompt. For the Thoughtworks CSV download, fill in the five required fields; extra fields stay in the JSON prompt only.</p>
       <div id="blip-list"></div>
       <div class="row"><button id="add-blip" class="alt" type="button" disabled>Add Blip</button></div>
     </section>
