@@ -88,8 +88,8 @@ def shape(b, q):
     if b.get("isNew") or st == "new": d = f'<path d="M{x:.1f} {y-14:.1f} L{x+13:.1f} {y+10:.1f} L{x-13:.1f} {y+10:.1f}Z" class="sh"/>'; ty = y + 6
     elif st in ("moved in", "moved out"): d = f'<path d="M{x:.1f} {y-14:.1f} L{x+14:.1f} {y:.1f} L{x:.1f} {y+14:.1f} L{x-14:.1f} {y:.1f}Z" class="sh"/>'; ty = y + 4
     else: d = f'<circle cx="{x:.1f}" cy="{y:.1f}" r="12.5" class="sh"/>'; ty = y + 4
-    return (f'<a href="#b-{slug(b["name"])}" class="blip q{q}" data-q="{q}" data-ring="{esc(b["ring"])}" data-name="{esc(b["name"].lower())}">'
-            f'<title>{n}. {esc(b["name"])} ({esc(b["_ringname"])})</title>{d}<text x="{x:.1f}" y="{ty:.1f}">{n}</text></a>')
+    return (f'<a href="#b-{slug(b["name"])}" class="blip q{q}" data-q="{q}" data-ring="{esc(b["ring"])}" data-name="{esc(b["name"].lower())}" aria-label="Blip {n}: {esc(b["name"])}; {esc(b["_ringname"])}">'
+            f'<title>{n}. {esc(b["name"])} ({esc(b["_ringname"])})</title><circle cx="{x:.1f}" cy="{y:.1f}" r="19" class="hit"/><g class="marker">{d}<text x="{x:.1f}" y="{ty:.1f}">{n}</text></g></a>')
 
 
 def svg_radar(state, ordered):
@@ -102,9 +102,21 @@ def svg_radar(state, ordered):
         mid = (RING_FRAC[i] + RING_FRAC[i + 1]) / 2 * R
         for sx in (1, -1):
             o.append(f'<text x="{CX+sx*mid:.0f}" y="{CY+4}" class="ringlbl" text-anchor="middle">{esc(r["_name"].upper())}</text>')
-    lab = [(CX + 10, 26, "start"), (CX - 10, 26, "end"), (CX - 10, 788, "end"), (CX + 10, 788, "start")]
+    # Put quadrant titles in the corners with a generous inset. Use tspans so
+    # long custom names wrap instead of being clipped by the SVG viewBox.
     for i, q in enumerate(qs):
-        o.append(f'<text x="{lab[i][0]}" y="{lab[i][1]}" text-anchor="{lab[i][2]}" class="qlbl q{i}">{esc(q["name"])}</text>')
+        left, top = i in (1, 2), i in (0, 1)
+        x, y, anchor = (24 if left else 776), (42 if top else 758), ("start" if left else "end")
+        words = str(q["name"]).split()
+        lines, line = [], ""
+        for word in words:
+            if line and len(line) + len(word) + 1 > 23:
+                lines.append(line); line = word
+            else:
+                line = (line + " " + word).strip()
+        if line: lines.append(line)
+        tspans = "".join(f'<tspan x="{x}" dy="{0 if n == 0 else 20}">{esc(text)}</tspan>' for n, text in enumerate(lines[:3]))
+        o.append(f'<text x="{x}" y="{y}" text-anchor="{anchor}" class="qlbl q{i}">{tspans}</text>')
     o += [shape(b, [q["id"] for q in qs].index(b["quadrant"])) for b in ordered]
     o.append("</svg>")
     return "\n".join(o)
@@ -267,16 +279,16 @@ TEMPLATE = r'''<!doctype html>
 <title>%%TITLE%%</title><meta name="description" content="%%TAGLINE%%"><meta name="color-scheme" content="light dark">%%CSP%%%%NOINDEX%%
 <!-- Generated %%ISO%% by %%CREDIT%%. Method inspired by the Thoughtworks Technology Radar (https://www.thoughtworks.com/radar/faq). Not affiliated with Thoughtworks. -->
 <style>
-:root{color-scheme:light;--bg:#fff;--ink:#171717;--mute:#525252;--line:#d4d4d4;--card:#fff;--soft:#f5f6f4;--shade:#000;--bi:#fff;--band0:#0000000d;--band1:#00000009;--band2:#00000006;--band3:#00000003}
+ :root{color-scheme:light;--bg:#fff;--ink:#171717;--mute:#525252;--line:#d4d4d4;--card:#fff;--soft:#f5f6f4;--shade:#000;--bi:#fff;--band0:#0000000d;--band1:#00000009;--band2:#00000006;--band3:#00000003}
 :root[data-theme=dark]{color-scheme:dark;--bg:#121212;--ink:#f5f5f5;--mute:#b5b5b5;--line:#404040;--card:#202020;--soft:#181818;--shade:#fff;--bi:#121212;--band0:#ffffff14;--band1:#ffffff0e;--band2:#ffffff09;--band3:#ffffff05}
 @media(prefers-color-scheme:dark){:root[data-theme=system]{color-scheme:dark;--bg:#121212;--ink:#f5f5f5;--mute:#b5b5b5;--line:#404040;--card:#202020;--soft:#181818;--shade:#fff;--bi:#121212;--band0:#ffffff14;--band1:#ffffff0e;--band2:#ffffff09;--band3:#ffffff05}}
 :root{--accent:color-mix(in srgb,var(--brand-accent) 46%,var(--shade));--q0:color-mix(in srgb,var(--brand-q0) 46%,var(--shade));--q1:color-mix(in srgb,var(--brand-q1) 46%,var(--shade));--q2:color-mix(in srgb,var(--brand-q2) 46%,var(--shade));--q3:color-mix(in srgb,var(--brand-q3) 46%,var(--shade))}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:64px}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;overflow-wrap:anywhere;-webkit-tap-highlight-color:#d6453d30}
+ *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:76px}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;overflow-wrap:anywhere;-webkit-tap-highlight-color:#d6453d30}
 h1,h2,h3,h4,h5,.ui,button,nav,.tag,.meta,table,summary{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 a{color:var(--accent)}main,header .in,footer .in{max-width:1100px;margin:0 auto;padding:0 20px}
-.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:8px;background:var(--card);padding:6px 10px;z-index:9}
+ .skip{position:fixed;left:12px;top:-100px;background:var(--card);padding:8px 12px;z-index:20;border:1px solid var(--line);border-radius:8px}.skip:focus{top:8px}
 nav.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);font-size:14px}
-nav.top .in{display:flex;gap:18px;align-items:center;overflow-x:auto;white-space:nowrap;padding:10px 20px;max-width:1100px;margin:auto}nav.top a{text-decoration:none;color:var(--mute)}nav.top a:hover{color:var(--ink)}nav.top button{margin-left:auto}
+ nav.top .in{display:flex;gap:18px;align-items:center;overflow-x:auto;white-space:nowrap;padding:10px 20px;max-width:1100px;margin:auto;scrollbar-width:thin}nav.top a{text-decoration:none;color:var(--mute)}nav.top a:hover{color:var(--ink)}nav.top button{margin-left:auto}
 header.hero{padding:64px 0 36px;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 5% 0%,color-mix(in srgb,var(--brand-accent) 20%,transparent),transparent 64%),var(--soft)}.eyebrow{font:600 13px system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 h1{font-size:clamp(34px,6vw,64px);line-height:1.05;margin:.3em 0 .2em;letter-spacing:-.02em}.tag-line{font-size:clamp(18px,2.4vw,24px);color:var(--mute);margin:0 0 20px;max-width:46ch}
 .lede{color:var(--mute);max-width:68ch}.intro{max-width:68ch;font-size:19px}
@@ -286,11 +298,11 @@ h2{font-size:clamp(26px,3.4vw,36px);margin:0 0 .4em;letter-spacing:-.01em}sectio
 .stats{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0 0}.stat{border:1px solid var(--line);border-radius:12px;padding:10px 16px;background:var(--card);min-width:96px}.stat b{display:block;font:700 26px system-ui}.stat span{font:13px system-ui;color:var(--mute)}
 .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 14px}.tab.on,.chip.tog.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.chip.tog{font-weight:500}
 input[type=search]{font:15px system-ui;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);min-width:200px}
-.radarwrap{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}#radar{width:100%;height:auto;max-height:86vh;background:transparent}
+ .radarwrap{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;max-width:min(100%,900px);margin-inline:auto}#radar{display:block;width:100%;height:auto;max-height:none;background:transparent;overflow:visible}
 .band{stroke:var(--line);stroke-width:1}.b0{fill:var(--band0)}.b1{fill:var(--band1)}.b2{fill:var(--band2)}.b3{fill:var(--band3)}.axis{stroke:var(--line)}
 .ringlbl{font:600 10px system-ui;fill:var(--mute);letter-spacing:.12em}.qlbl{font:700 17px system-ui}.qlbl.q0,.num.q0,.qh.q0{color:var(--q0);fill:var(--q0)}.qlbl.q1,.num.q1,.qh.q1{color:var(--q1);fill:var(--q1)}.qlbl.q2,.num.q2,.qh.q2{color:var(--q2);fill:var(--q2)}.qlbl.q3,.num.q3,.qh.q3{color:var(--q3);fill:var(--q3)}
-.blip .sh{stroke:var(--bg);stroke-width:2}.blip.q0 .sh{fill:var(--q0)}.blip.q1 .sh{fill:var(--q1)}.blip.q2 .sh{fill:var(--q2)}.blip.q3 .sh{fill:var(--q3)}.blip text{font:700 11px system-ui;fill:var(--bi);text-anchor:middle;pointer-events:none}
-.blip:hover .sh,.blip:focus .sh,.blip.hl .sh{stroke:var(--ink);stroke-width:3}.hide{display:none!important}
+ .qlbl{font:700 16px/1.2 system-ui;paint-order:stroke;stroke:var(--bg);stroke-width:5px;stroke-linejoin:round}.blip{cursor:pointer;transition:opacity .18s ease,filter .18s ease}.blip .hit{fill:transparent;pointer-events:all}.blip .marker{transition:transform .18s ease;transform-box:fill-box;transform-origin:center}.blip .sh{stroke:var(--bg);stroke-width:2}.blip.q0 .sh{fill:var(--q0)}.blip.q1 .sh{fill:var(--q1)}.blip.q2 .sh{fill:var(--q2)}.blip.q3 .sh{fill:var(--q3)}.blip text{font:700 11px system-ui;fill:var(--bi);text-anchor:middle;pointer-events:none}
+ .blip:hover .marker,.blip:focus .marker,.blip.hl .marker{transform:scale(1.16)}.blip:hover .sh,.blip:focus .sh,.blip.hl .sh{stroke:var(--ink);stroke-width:3}.hide{display:none!important}
 .legend{display:flex;gap:18px;flex-wrap:wrap;font:14px system-ui;color:var(--mute);align-items:center}.legend svg{vertical-align:middle;margin-right:6px}
 .ringcards{list-style:none;padding:0;margin:20px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.ringcard{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px}.ringcard h3{margin:0 0 6px;font-size:18px}.ringcard p{margin:.2em 0 .6em;font-size:15px}.ringcard ul{margin:0;padding-left:18px;font-size:14px;color:var(--mute)}.count{font:600 12px system-ui;color:var(--mute);border:1px solid var(--line);border-radius:99px;padding:1px 8px;margin-left:4px}
 .theme{max-width:72ch;margin:34px 0}.theme h3{font-size:24px;margin:0 0 .4em}.bliplink{text-decoration-thickness:1px;text-underline-offset:3px}.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{font:500 13px system-ui;border:1px solid var(--line);border-radius:99px;padding:3px 10px;text-decoration:none;color:var(--ink);background:var(--card)}
@@ -303,7 +315,8 @@ ol.keep{max-width:68ch;padding-left:22px}details{border-bottom:1px solid var(--l
 footer{padding:36px 0 60px;color:var(--mute);font:14px/1.6 system-ui}footer a{color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .theme-settings{max-width:none;margin-top:20px;padding:0 16px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card)}.theme-settings summary{color:var(--accent)}.palette{display:flex;flex-wrap:wrap;gap:14px 22px}.palette label{display:flex;align-items:center;gap:8px}.palette select,.palette input{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px;min-height:36px;font:inherit}.palette input{width:44px;cursor:pointer}.theme-settings p{font-size:14px;color:var(--mute)}
-@media(max-width:540px){.grid{grid-template-columns:minmax(0,1fr)}}
+ @media(max-width:540px){.grid{grid-template-columns:minmax(0,1fr)}nav.top .in{gap:14px;padding-inline:14px}#radar{min-height:320px}.ringlbl{font-size:9px}}
+ @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 @media print{nav.top,.tools,.btns,.skip,#radarctl,.theme-settings{display:none!important}:root[data-theme]{color-scheme:light;--bg:#fff;--ink:#171717;--mute:#525252;--line:#d4d4d4;--card:#fff;--soft:#f5f6f4;--shade:#000;--bi:#fff}body{background:#fff;color:#000;font-size:12pt}section{padding:18pt 0;break-inside:auto}.card{break-inside:avoid}details{display:block}details>*{display:block}#radar{max-height:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style></head><body>
@@ -323,7 +336,7 @@ footer{padding:36px 0 60px;color:var(--mute);font:14px/1.6 system-ui}footer a{co
 <p id="theme-status" role="status"></p>
 </details>
 <section id="radar-sec"><h2>The radar</h2><p class="lede">Each blip is one tool or practice. Rings show our recommendation; quadrants are topic areas. Select a blip to jump to its write-up.</p>
-<div id="radarctl" class="tools" role="toolbar" aria-label="Filter the radar">%%TABS%%<span aria-hidden="true">|</span>%%RCHIPS%%<input id="q" type="search" placeholder="Search blips" aria-label="Search blips"></div>
+ <div id="radarctl" class="tools" role="toolbar" aria-label="Filter the radar">%%TABS%%<span aria-hidden="true">|</span>%%RCHIPS%%<input id="q" type="search" placeholder="Search blips" aria-label="Search blips"></div>
 <div class="radarwrap">%%SVG%%</div>
 <p class="legend" aria-label="Legend"><span><svg width="16" height="16"><path d="M8 1L15 14H1Z" fill="currentColor"/></svg>New</span><span><svg width="16" height="16"><path d="M8 1L15 8L8 15L1 8Z" fill="currentColor"/></svg>Moved ring</span><span><svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg>No change</span><span id="shown" class="ui"></span></p></section>
 <section id="how"><h2>How to read this radar</h2><p class="lede">%%TOTAL%% blips across four quadrants. The rings run from the centre outwards.</p><ul class="ringcards">%%RINGCARDS%%</ul>
@@ -339,15 +352,15 @@ footer{padding:36px 0 60px;color:var(--mute);font:14px/1.6 system-ui}footer a{co
 </main>
 <footer><div class="in">Generated %%ISO%% with %%CREDIT%%. The radar method (blips, quadrants, rings, themes) is adapted from the <a href="https://www.thoughtworks.com/radar/faq" rel="noopener">Thoughtworks Technology Radar</a>; this page is independent and not affiliated with or endorsed by Thoughtworks. This is an opinion based on our own experience, not a recommendation to buy anything.</div></footer>
 <script>
-(()=>{const $=s=>[...document.querySelectorAll(s)],svg=document.getElementById('radar'),VB=[[400,0,400,400],[0,0,400,400],[0,400,400,400],[400,400,400,400]];
+ (()=>{const $=s=>[...document.querySelectorAll(s)],svg=document.getElementById('radar'),VB=[[400,0,400,400],[0,0,400,400],[0,400,400,400],[400,400,400,400]];
 let view='all',rings=new Set($('.chip.tog').map(c=>c.dataset.ring)),term='';
 const apply=()=>{let n=0;$('.blip,.card').forEach(e=>{const ok=(view==='all'||e.dataset.q===String(view))&&rings.has(e.dataset.ring)&&e.dataset.name.includes(term);e.classList.toggle('hide',!ok);if(ok&&e.classList.contains('blip'))n++});
 $('.qsec').forEach(s=>s.classList.toggle('hide',view!=='all'&&s.dataset.q!==String(view)));
 svg.setAttribute('viewBox',view==='all'?'0 0 800 800':VB[view].join(' '));const s=document.getElementById('shown');if(s)s.textContent=n+' blips shown'};
-$('.tab').forEach(b=>b.onclick=()=>{view=b.dataset.view;$('.tab').forEach(x=>x.classList.toggle('on',x===b));apply()});
-$('.chip.tog').forEach(b=>b.onclick=()=>{const r=b.dataset.ring;rings.has(r)?rings.delete(r):rings.add(r);b.classList.toggle('on');apply()});
+ $('.tab').forEach(b=>{b.setAttribute('aria-pressed',String(b.classList.contains('on')));b.onclick=()=>{view=b.dataset.view;$('.tab').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});apply()}});
+ $('.chip.tog').forEach(b=>{b.setAttribute('aria-pressed','true');b.title='Show or hide '+b.textContent.trim()+' blips';b.onclick=()=>{const r=b.dataset.r;rings.has(r)?rings.delete(r):rings.add(r);b.classList.toggle('on');b.setAttribute('aria-pressed',String(rings.has(r)));apply()}});
 document.getElementById('q').oninput=e=>{term=e.target.value.toLowerCase().trim();apply()};
-$('.blip').forEach(b=>{const id=b.getAttribute('href');b.onmouseenter=()=>document.querySelector(id)?.classList.add('hl');b.onmouseleave=()=>document.querySelector(id)?.classList.remove('hl')});
+ $('.blip').forEach(b=>{const id=b.getAttribute('href'),card=document.querySelector(id);b.onmouseenter=()=>card?.classList.add('hl');b.onmouseleave=()=>card?.classList.remove('hl');b.onfocus=()=>card?.classList.add('hl');b.onblur=()=>card?.classList.remove('hl')});
 document.getElementById('print').onclick=()=>print();
 const root=document.documentElement, id=s=>document.getElementById(s);
 // Save the unmodified markup so downloads don't inherit temporary filters or editor controls.

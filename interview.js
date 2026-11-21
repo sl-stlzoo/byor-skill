@@ -24,7 +24,7 @@
   function field(parent, name, label, { type = "text", choices, hint, value = "" } = {}) {
     const wrapper = element("label", label, { className: "field" });
     if (hint) wrapper.append(element("span", hint, { className: "hint" }));
-    const control = element(choices ? "select" : type === "notes" ? "textarea" : "input", "", { name, autocomplete: "off" });
+    const control = element(choices ? "select" : type === "notes" ? "textarea" : "input", "", { name, autocomplete: "off", id: `field-${name}` });
     if (control.tagName === "INPUT") control.type = type;
     for (const [key, title] of choices || []) control.add(new Option(title, key));
     control.value = value;
@@ -87,6 +87,7 @@
   function addArea(domain, target) {
     const details = element("details");
     const summary = element("summary");
+    details.id = `area-${domain.id}`;
     const title = element("span", domain.name);
     const badge = element("span", "", { className: "area-status" });
     summary.append(title, badge);
@@ -165,6 +166,7 @@
     const legend = element("legend", "Blip");
     const grid = element("div", "", { className: "fields" });
     const advanced = element("details");
+    advanced.id = `advanced-blip-${index}`;
     const advancedGrid = element("div", "", { className: "fields" });
     const entry = (key, label, opts) => field(grid, `blip-${index}-${key}`, label, { ...opts, value: values[key] || "" });
     const extra = (key, label, opts) => field(advancedGrid, `blip-${index}-${key}`, label, { ...opts, value: values[key] || "" });
@@ -212,7 +214,9 @@
     });
     const row = element("div", "", { className: "row" });
     row.append(remove);
-    advanced.append(element("summary", "Additional Radar Details"), advancedGrid);
+    const advancedSummary = element("summary", "Additional Radar Details");
+    advancedSummary.title = "Optional status, ownership and review metadata for this blip.";
+    advanced.append(advancedSummary, advancedGrid);
     advanced.open = extraFields.some(key => key !== "next_action" && values[key]);
     container.append(legend, grid, advanced, status, row);
     $("blip-list").append(container);

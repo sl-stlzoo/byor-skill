@@ -19,7 +19,7 @@ RING_LABEL = {"adopt": "Adopt", "trial": "Trial", "assess": "Assess", "caution":
 EXP_LABEL = V.VOCAB["experience_labels"]
 CSS = """:root{--bg:#fbfaf7;--ink:#1c1b19;--mute:#5d5a54;--line:#dedad1;--card:#fff;--ac:#0f766e;--r0:#0f766e;--r1:#2563eb;--r2:#b45309;--r3:#be123c}
 @media(prefers-color-scheme:dark){:root{--bg:#12110f;--ink:#f1eee8;--mute:#a8a39a;--line:#35322d;--card:#1a1815;--ac:#5eead4;--r0:#5eead4;--r1:#93c5fd;--r2:#fbbf24;--r3:#fda4af}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,serif}main{max-width:1100px;margin:0 auto;padding:0 20px 60px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,serif;overflow-wrap:anywhere}nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:4px max(16px,calc((100vw - 1060px)/2))}.skip{position:fixed;left:12px;top:-100px;background:var(--card);padding:8px 12px;z-index:10}.skip:focus{top:8px}main{max-width:1100px;margin:0 auto;padding:0 20px 60px}
 h1,h2,h3,button,.ui,table,summary,nav{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}h1{font-size:clamp(30px,5vw,52px);line-height:1.08;margin:.3em 0}h2{font-size:26px;margin:0 0 .5em}h3{font-size:19px;margin:1.4em 0 .4em}
 section{padding:40px 0;border-bottom:1px solid var(--line)}.eyebrow{font:600 13px system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);padding-top:48px}.lede{color:var(--mute);max-width:70ch}
 .stats{display:flex;gap:12px;flex-wrap:wrap}.stat{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 16px}.stat b{display:block;font:700 26px system-ui}.stat span{font:13px system-ui;color:var(--mute)}
@@ -29,7 +29,7 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}.eyebrow{font:600 13p
 .tools{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}button{font:600 13px system-ui;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 13px;border-radius:99px;cursor:pointer}button.on{background:var(--ink);color:var(--bg)}
 input,select{font:15px system-ui;padding:8px 12px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink)}.note{color:var(--mute);font-size:14px}.hide{display:none!important}
 .card{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px;margin:12px 0;max-width:75ch}details{margin:4px 0}summary{cursor:pointer;font-size:14px}a{color:var(--ac)}.priv{border:2px solid var(--r3);border-radius:12px;padding:10px 14px;font:600 14px system-ui}
-footer{padding:30px 0;color:var(--mute);font:14px system-ui}@media print{.tools,nav{display:none!important}body{background:#fff;color:#000}section{break-inside:avoid-page}}:focus-visible{outline:3px solid var(--ac);outline-offset:2px}"""
+footer{padding:30px 0;color:var(--mute);font:14px system-ui}@media(max-width:600px){main{padding-inline:16px}section{padding:28px 0}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}@media print{.tools,nav{display:none!important}body{background:#fff;color:#000}section{break-inside:avoid-page}}:focus-visible{outline:3px solid var(--ac);outline-offset:2px}"""
 
 
 def page(title, body, script="", noindex=True):
@@ -37,7 +37,7 @@ def page(title, body, script="", noindex=True):
     csp = f"default-src 'none'; script-src {sp}; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'"
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title>'
             f'<meta name="color-scheme" content="light dark"><meta http-equiv="Content-Security-Policy" content="{csp}">' + ('<meta name="robots" content="noindex, nofollow">' if noindex else "")
-            + f"<style>{CSS}</style></head><body><main>{body}</main>" + (f"<script>{script}</script>" if script else "") + "</body></html>")
+            + f"<style>{CSS}</style></head><body><a class='skip' href='#main'>Skip to content</a><nav aria-label='Page sections'><div class='tools'><a href='#highlights'>Highlights</a><a href='#domains'>Domains</a><a href='#participants'>Participants</a><a href='#method'>Method</a></div></nav><main id='main'>{body}</main>" + (f"<script>{script}</script>" if script else "") + "</body></html>")
 
 
 NAMES = {"crm": "CRM", "erp": "ERP", "hris": "HRIS", "gis": "GIS", "itsm-helpdesk": "ITSM Helpdesk", "ai-tools": "AI Tools", "e-commerce": "E-commerce", "food-and-beverage": "Food & Beverage", "call-center": "Call Center"}

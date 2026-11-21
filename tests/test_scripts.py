@@ -98,6 +98,8 @@ def test_site_builds_and_is_self_contained():
         t = out.read_text(encoding="utf-8")
         for needle in ("Themes for this edition", "How to read this radar", "noindex", "<svg id=\"radar\"", "Keeping up", "FAQ"):
             assert needle in t, needle
+        for needle in ('aria-label="Blip 1:', 'class="hit"', 'tspan x=', 'prefers-reduced-motion', 'aria-pressed', 'scroll-margin-top'):
+            assert needle in t, needle
         import re
         assert not re.search(r'(src|href)="https?://(?!www\.thoughtworks\.com)', t.replace('rel="noopener"', ""))
         assert "<script src" not in t and "@import" not in t

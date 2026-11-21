@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Build your own technology radar with your AI assistant</title>
-<meta name="description" content="Build a technology radar with a private batch worksheet or a guided interview.">
+<title>AZA IT - Guided "Build your own technology radar" exercise</title>
+<meta name="description" content="Build a technology radar in conversation with an LLM assistant and offline web form.">
 <meta name="theme-color" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212">
 <link rel="stylesheet" href="site.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <nav class="topbar" aria-label="Main"><div class="nav-inner">
-<a class="wordmark" href="index.html" aria-current="page">Technology Radar</a>
-<a href="interview.html">Batch Interview</a><a href="examples/output/index.html">Example Radar</a>
+<a class="wordmark" href="index.html" aria-current="page">"BYOR" AZA IT Tech Radar guide</a>
+<a href="interview.html">Use a template</a><a href="examples/output/index.html">See an example</a>
 </div></nav>
 <main id="main"><header class="hero">
-<div class="eyebrow">Open source · works with any capable AI assistant</div>
-<h1>Build your own technology radar</h1>
-<p class="lede">Map the software you use, test and want to move away from. Answer the interview in a private browser worksheet, or work through it with your AI assistant.</p>
-<div class="row"><a class="btn" href="interview.html">Open the Batch Interview</a><a class="btn alt" href="#guided">Start a Guided Chat</a></div>
+<h1>Hello, Tech radar!</h1>
+<p class="lede">Tech radars are useful. This landing page provides resources to expediently complete the byor process and recommendations from Thoughtworks to "build your own radar." You copy the prompt or complete the template, pass it to your preferred AI assistant (be mindful of data sharing), and the "skill" files in the public GitHub repo provide context to your session to develop your personal Tech Radar, offline and locally.</p>
+<div class="row"><a class="btn" href="interview.html">See the template page/process (recommended, faster)</a><a class="btn alt" href="#guided">Copy/paste prompt for chat 👇</a></div>
+  <div class="row"></div><a class="btn alt" href="#expect">Learn more about what this is and how it works</a></div>
 </header>
 
 <section id="guided"><h2>Start a Guided Chat</h2>
@@ -26,7 +26,7 @@
 <details><summary>Resume later, or use a customised fork</summary><p>Say: “Resume my radar using this repo” and paste your saved <code>radar-state.json</code>. To use your own domain list, fork the repo, edit <code>config/domains.yaml</code>, and give the assistant your fork’s link instead.</p></details>
 </section>
 
-<section><h2>What to Expect</h2>
+<section id="expect"><h2>What to Expect</h2>
 <ol class="steps">
 <li><b>Setup (about 10 min).</b> Pick quick, standard or deep; describe your organisation; confirm which software areas apply; define what Adopt, Trial, Assess and Caution mean for you.</li>
 <li><b>Interviews (about 5 min per area at standard depth).</b> One area at a time, each quadrant in turn. You list what you use, pilot and avoid; the assistant proposes a ring with a reason and you confirm.</li>
@@ -37,7 +37,7 @@
 <p>You can stop at any time and resume. The total depends on how many areas you cover.</p>
 </section>
 
-<section><h2>What You Get</h2>
+<section id="deliverables"><h2>What You Get</h2>
 <div class="box"><ul>
 <li><b>index.html</b>: a single-page website with an interactive radar, ring guide, every blip’s write-up and a built-in theme editor. Works offline, on phones and in print.</li>
 <li><b>radar.csv / radar.json</b>: load into <a href="https://www.thoughtworks.com/radar/byor">Thoughtworks Build Your Own Radar</a>.</li>
@@ -45,27 +45,28 @@
 <p class="note">Assistants that cannot save files print the CSV and state in the chat instead, and the site can be hand-built as a lighter alternative.</p></div>
 </section>
 
-<section><h2>Good to Know</h2>
+<section id="privacy"><h2>Good to Know</h2>
 <ul><li><b>Security:</b> read <a href="SECURITY.md">SECURITY.md</a> before using it at work. Short version: no accounts, no telemetry, no secrets; the risk is what you tell an AI assistant and where you publish the result.</li><li><b>Privacy:</b> the site and CSV list your whole tool stack. Host privately unless you want it public; the site is set to <code>noindex</code> by default.</li>
 <li><b>Custom quadrant names</b> show correctly only on a self-hosted BYOR (one Docker command). The hosted Thoughtworks site needs a compatibility export.</li>
 <li><b>It is your opinion, not a survey.</b> Example tool names in the question lists may be out of date; the assistant should verify them if you allow web lookups.</li></ul>
 </section>
 
-<section><h2>Benchmark With Peer Organisations (Optional)</h2>
+<section id="benchmark"><h2>Benchmark With Peer Organisations (Optional)</h2>
 <p>A convener can run an informal consortium round: members share a small redacted file (tools, rings, evidence; never descriptions or incidents), everything is processed offline, nothing is shown unless at least three organisations contributed, and everyone gets a benchmark website plus a private “you vs the round” report. See <a href="docs/CONSORTIUM.md">docs/CONSORTIUM.md</a>.</p>
 </section>
 
-<section><h2>Tested Clients</h2>
-<p class="note">Community-maintained. Results and how to add yours: <a href="TESTING.md">TESTING.md</a>.</p>
-<div class="scroll"><table><thead><tr><th>Client</th><th>Expected tier</th><th>Status</th></tr></thead><tbody>
-<tr><td>Claude Code / Cowork</td><td>1: full (files, code, site)</td><td>Not yet tested</td></tr>
+<section id="clients"><h2>Tested Clients</h2>
+<p class="note">How to update: <a href="TESTING.md">TESTING.md</a>.</p>
+<div class="scroll"><table><thead><tr><th>Client (AI assistant/platform)</th><th>Level of support</th><th>Status</th></tr></thead><tbody>
+<tr><td>Microsoft 365 Copilot</td><td>1: full</td><td>Works pretty good, live demo 11/20</td></tr>
+  <tr><td>Claude Code / Cowork</td><td>1: full (files, code, site)</td><td>Not yet tested</td></tr>
 <tr><td>Claude.ai chat (web fetch on)</td><td>2: chat snapshots, CSV</td><td>Not yet tested</td></tr>
 <tr><td>ChatGPT (browsing on)</td><td>2: chat snapshots, CSV</td><td>Not yet tested</td></tr>
 <tr><td>Cursor / Copilot agent</td><td>1: full</td><td>Not yet tested</td></tr>
 <tr><td>Any chat with BUNDLE.md attached</td><td>3: offline bundle</td><td>Not yet tested</td></tr></tbody></table></div>
 </section>
 
-<footer>Method adapted from the <a href="https://www.thoughtworks.com/radar/faq">Thoughtworks Technology Radar</a>. This project is independent and not affiliated with or endorsed by Thoughtworks. MIT licensed. <a id="repo" href="https://github.com/sl-stlzoo/byor-skill">Repository</a></footer>
+<footer> MIT licensed, independent project adapted from <a href="https://www.thoughtworks.com/radar/faq">Thoughtworks Technology Radar</a>, no affiliation or endorsement by Thoughtworks. <a id="repo" href="https://github.com/sl-stlzoo/byor-skill">Repository</a></footer>
 </main>
 <script>
 (function(){
